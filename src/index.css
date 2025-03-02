@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -37,11 +36,11 @@
   }
 
   * {
-    @apply border-border selection:bg-robotics-purple/20 selection:text-white;
+    @apply border-border selection:bg-robotics-purple/20 selection:text-white box-border;
   }
   
   body {
-    @apply bg-background text-foreground antialiased overflow-x-hidden;
+    @apply bg-background text-foreground antialiased overflow-x-hidden min-h-screen;
     font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
   }
 
@@ -66,6 +65,18 @@
   
   .text-gradient {
     @apply bg-gradient-to-r from-robotics-purple to-robotics-purple-light bg-clip-text text-transparent;
+  }
+
+  .responsive-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .responsive-text {
+    @apply text-base md:text-lg lg:text-xl;
   }
 }
 
@@ -185,5 +196,22 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .stagger-animation > * {
+    animation-delay: 0.05s !important;
+  }
+  
+  .countdown-item {
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown-item {
+    transform: scale(0.75);
   }
 }

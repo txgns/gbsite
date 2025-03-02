@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils';
 import { ChevronDown, Cpu, Cog, Wrench } from 'lucide-react';
 
 const Hero = () => {
-  // Define uma data fixa para a competição (exemplo: 10 de dezembro de 2024)
-  const competitionDate = new Date('2024-12-10T00:00:00');
+  // Define a specific date for the competition (May 1, 2025)
+  const competitionDate = new Date('2025-05-01T00:00:00');
   
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -20,7 +20,7 @@ const Hero = () => {
       const difference = competitionDate.getTime() - now.getTime();
       
       if (difference <= 0) {
-        // A competição já começou
+        // The competition has already started
         setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
@@ -49,54 +49,54 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex items-center justify-center px-6 md:px-12 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 py-16 sm:py-20 lg:py-0 overflow-hidden"
       style={{
         background: 'linear-gradient(135deg, #121212 0%, #5C1D91 100%)',
       }}
     >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-robotics-purple/20 rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-robotics-purple/10 rounded-full filter blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-32 sm:w-64 h-32 sm:h-64 bg-robotics-purple/20 rounded-full filter blur-3xl"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-48 sm:w-96 h-48 sm:h-96 bg-robotics-purple/10 rounded-full filter blur-3xl"></div>
 
         {/* Circuit pattern overlay */}
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000')] bg-no-repeat bg-cover opacity-5"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
-        <span className="text-sm md:text-base uppercase tracking-widest text-robotics-purple-light animate-fade-in">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center">
+        <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-robotics-purple-light animate-fade-in">
           Inovação Através da Engenharia
         </span>
-        <h1 className="mt-4 text-4xl md:text-7xl font-bold stagger-animation">
+        <h1 className="mt-2 sm:mt-4 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold stagger-animation">
           <span className="block">GAMBIARRA</span>
-          <span className="block text-gradient mt-2">ROBOTICS</span>
+          <span className="block text-gradient mt-1 sm:mt-2">ROBOTICS</span>
         </h1>
-        <p className="mt-6 max-w-lg text-base md:text-lg text-white/80 animate-fade-in">
+        <p className="mt-4 sm:mt-6 max-w-sm sm:max-w-lg text-sm sm:text-base md:text-lg text-white/80 animate-fade-in px-4">
           Construindo o futuro através de soluções criativas de engenharia.
           Junte-se a nós enquanto ampliamos os limites da robótica e tecnologia.
         </p>
 
-        <div className="mt-10 flex flex-wrap justify-center gap-6 md:gap-10">
+        <div className="mt-6 sm:mt-10 flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-10">
           {[
-            { icon: <Cpu size={24} />, title: "Designs Inovadores" },
-            { icon: <Cog size={24} />, title: "Excelência em Engenharia" },
-            { icon: <Wrench size={24} />, title: "Resolução de Problemas" },
+            { icon: <Cpu size={20} className="sm:w-6 sm:h-6" />, title: "Designs Inovadores" },
+            { icon: <Cog size={20} className="sm:w-6 sm:h-6" />, title: "Excelência em Engenharia" },
+            { icon: <Wrench size={20} className="sm:w-6 sm:h-6" />, title: "Resolução de Problemas" },
           ].map((item, index) => (
             <div 
               key={index}
-              className="glass-card p-4 rounded-lg flex items-center space-x-3 text-white/90 hover-scale"
+              className="glass-card p-2 sm:p-4 rounded-lg flex items-center space-x-2 sm:space-x-3 text-white/90 hover-scale"
               style={{ animationDelay: `${index * 0.15}s` }}
             >
               <div className="text-robotics-purple-light">
                 {item.icon}
               </div>
-              <span className="text-sm md:text-base">{item.title}</span>
+              <span className="text-xs sm:text-sm md:text-base">{item.title}</span>
             </div>
           ))}
         </div>
 
         {/* Countdown Timer */}
-        <div className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8">
+        <div className="mt-8 sm:mt-12 flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-8">
           {[
             { label: 'Dias', value: timeRemaining.days },
             { label: 'Horas', value: timeRemaining.hours },
@@ -105,26 +105,26 @@ const Hero = () => {
           ].map((item) => (
             <div key={item.label} className="countdown-item">
               <div className={cn(
-                "flex flex-col items-center justify-center w-20 h-20 md:w-28 md:h-28",
+                "flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28",
                 "glass-card rounded-xl text-white purple-glow"
               )}>
-                <span className="text-2xl md:text-4xl font-bold">{item.value}</span>
-                <span className="text-xs md:text-sm text-white/70">{item.label}</span>
+                <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">{item.value}</span>
+                <span className="text-[10px] sm:text-xs md:text-sm text-white/70">{item.label}</span>
               </div>
             </div>
           ))}
         </div>
         
-        <p className="mt-6 text-white/60 text-sm animate-fade-in">
+        <p className="mt-4 sm:mt-6 text-white/60 text-xs sm:text-sm animate-fade-in">
           Até a próxima competição de robótica
         </p>
 
         <button 
           onClick={scrollToTeam}
-          className="mt-12 animate-pulse-subtle"
+          className="mt-8 sm:mt-12 animate-pulse-subtle"
           aria-label="Rolar para a seção da equipe"
         >
-          <ChevronDown size={32} className="text-white/70" />
+          <ChevronDown size={24} className="sm:w-8 sm:h-8 text-white/70" />
         </button>
       </div>
     </section>
