@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { 
   Award, Calendar, ExternalLink, ChevronRight, 
-  Cpu, Robot, Zap, CircuitBoard
+  Cpu, Bot, Zap, CircuitBoard
 } from 'lucide-react';
 
 type Project = {
@@ -27,7 +26,7 @@ const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000',
     description: 'A terrain-adaptive rover with computer vision capabilities designed for autonomous navigation in difficult environments.',
     achievements: ['National Robotics Award', 'Terrain Navigation Challenge Winner', '95% Obstacle Avoidance Rate'],
-    icon: <Robot size={20} />,
+    icon: <Bot size={20} />,
     link: '#',
   },
   {
