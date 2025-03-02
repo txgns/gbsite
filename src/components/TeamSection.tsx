@@ -1,7 +1,10 @@
 
 import React from 'react';
 import { cn } from '@/lib/utils';
-import { Trophy, Target, Zap, Gamepad, Twitter, Instagram, Twitch } from 'lucide-react';
+import { 
+  Cpu, Wrench, Zap, CircuitBoard, 
+  Twitter, Instagram, Linkedin, Github 
+} from 'lucide-react';
 
 type TeamMember = {
   id: number;
@@ -12,79 +15,80 @@ type TeamMember = {
   social: {
     twitter?: string;
     instagram?: string;
-    twitch?: string;
+    linkedin?: string;
+    github?: string;
   };
 };
 
 const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: 'Alex "Striker" Kim',
-    role: 'Team Captain',
+    name: 'Alex Silva',
+    role: 'Lead Engineer',
     image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&q=80&w=500',
-    description: 'Pro FPS player with 5 years of competitive experience and multiple championships.',
+    description: 'Specialized in mechanical design with 5 years of robotics experience and multiple awards.',
     social: {
       twitter: '#',
-      instagram: '#',
-      twitch: '#',
+      linkedin: '#',
+      github: '#',
     },
   },
   {
     id: 2,
-    name: 'Jordan "Phantom" Chen',
-    role: 'Support',
+    name: 'Marina Chen',
+    role: 'Electronics Specialist',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=500',
-    description: 'Strategic mastermind with unparalleled map awareness and team coordination.',
+    description: 'Circuit design expert with a passion for developing innovative sensor systems.',
     social: {
-      twitter: '#',
-      instagram: '#',
+      linkedin: '#',
+      github: '#',
     },
   },
   {
     id: 3,
-    name: 'Sam "Vortex" Rodriguez',
-    role: 'Fragger',
+    name: 'Carlos Rodriguez',
+    role: 'Software Developer',
     image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?auto=format&fit=crop&q=80&w=500',
-    description: 'Known for lightning-fast reflexes and aggressive playstyle that dominates the competition.',
+    description: 'Algorithm specialist focused on computer vision and machine learning for autonomous robots.',
     social: {
       twitter: '#',
-      twitch: '#',
+      github: '#',
     },
   },
   {
     id: 4,
-    name: 'Morgan "Eclipse" Taylor',
-    role: 'Strategist',
+    name: 'Isabela Taylor',
+    role: 'Project Manager',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=500',
-    description: 'Analyzes opponent patterns and develops counter-strategies for the team.',
+    description: 'Coordinates team efforts and competition strategy with excellent leadership skills.',
     social: {
       twitter: '#',
       instagram: '#',
-      twitch: '#',
+      linkedin: '#',
     },
   },
 ];
 
 const TeamSection = () => {
   return (
-    <section id="team" className="py-24 px-6 md:px-12 bg-esports-black">
+    <section id="team" className="py-24 px-6 md:px-12 bg-robotics-black">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 stagger-animation">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Meet The Squad</span>
+            <span className="text-gradient">Meet Our Engineers</span>
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto">
-            Our elite team of professional gamers pushing the boundaries of what's possible
+            Our innovative team of robotics specialists building the future through technology
           </p>
         </div>
 
         {/* Team Values */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {[
-            { icon: <Trophy size={24} />, title: 'Excellence', description: 'Striving to be the best in every competition' },
-            { icon: <Target size={24} />, title: 'Precision', description: 'Perfecting every move with practice and dedication' },
-            { icon: <Zap size={24} />, title: 'Innovation', description: 'Creating new strategies that redefine the meta' },
-            { icon: <Gamepad size={24} />, title: 'Passion', description: 'Fueled by our love for gaming and competition' },
+            { icon: <Cpu size={24} />, title: 'Innovation', description: 'Creating new solutions to complex problems' },
+            { icon: <Wrench size={24} />, title: 'Craftsmanship', description: 'Precision engineering and attention to detail' },
+            { icon: <Zap size={24} />, title: 'Efficiency', description: 'Optimizing performance through smart design' },
+            { icon: <CircuitBoard size={24} />, title: 'Technology', description: 'Leveraging cutting-edge tech for better results' },
           ].map((item, index) => (
             <div 
               key={index} 
@@ -94,7 +98,7 @@ const TeamSection = () => {
               )}
               style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
             >
-              <div className="w-12 h-12 rounded-full bg-esports-purple/20 flex items-center justify-center mx-auto mb-4 text-esports-purple-light">
+              <div className="w-12 h-12 rounded-full bg-robotics-purple/20 flex items-center justify-center mx-auto mb-4 text-robotics-purple-light">
                 {item.icon}
               </div>
               <h3 className="text-white text-lg font-medium mb-2">{item.title}</h3>
@@ -121,11 +125,11 @@ const TeamSection = () => {
                     alt={member.name} 
                     className="w-full h-full object-cover object-center"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-esports-black to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-robotics-black to-transparent"></div>
                 </div>
                 
                 <div className="p-5">
-                  <div className="mb-1 inline-block px-3 py-1 text-xs rounded-full bg-esports-purple/20 text-esports-purple-light">
+                  <div className="mb-1 inline-block px-3 py-1 text-xs rounded-full bg-robotics-purple/20 text-robotics-purple-light">
                     {member.role}
                   </div>
                   <h3 className="text-white text-xl font-medium mb-2">{member.name}</h3>
@@ -133,18 +137,23 @@ const TeamSection = () => {
                   
                   <div className="flex items-center space-x-3">
                     {member.social.twitter && (
-                      <a href={member.social.twitter} className="text-white/60 hover:text-esports-purple transition-colors" aria-label="Twitter">
+                      <a href={member.social.twitter} className="text-white/60 hover:text-robotics-purple transition-colors" aria-label="Twitter">
                         <Twitter size={18} />
                       </a>
                     )}
                     {member.social.instagram && (
-                      <a href={member.social.instagram} className="text-white/60 hover:text-esports-purple transition-colors" aria-label="Instagram">
+                      <a href={member.social.instagram} className="text-white/60 hover:text-robotics-purple transition-colors" aria-label="Instagram">
                         <Instagram size={18} />
                       </a>
                     )}
-                    {member.social.twitch && (
-                      <a href={member.social.twitch} className="text-white/60 hover:text-esports-purple transition-colors" aria-label="Twitch">
-                        <Twitch size={18} />
+                    {member.social.linkedin && (
+                      <a href={member.social.linkedin} className="text-white/60 hover:text-robotics-purple transition-colors" aria-label="LinkedIn">
+                        <Linkedin size={18} />
+                      </a>
+                    )}
+                    {member.social.github && (
+                      <a href={member.social.github} className="text-white/60 hover:text-robotics-purple transition-colors" aria-label="GitHub">
+                        <Github size={18} />
                       </a>
                     )}
                   </div>

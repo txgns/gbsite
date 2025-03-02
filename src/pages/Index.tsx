@@ -35,7 +35,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-esports-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-robotics-black text-white overflow-x-hidden">
       <Header />
       <Hero />
       <TeamSection />

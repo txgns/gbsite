@@ -63,11 +63,11 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				esports: {
+				robotics: {
 					purple: {
-						DEFAULT: '#5D3FD3',
+						DEFAULT: '#7C3AED',
 						light: '#8B5CF6',
-						dark: '#2D1B69'
+						dark: '#5C1D91'
 					},
 					black: {
 						DEFAULT: '#121212',
@@ -132,8 +132,8 @@ export default {
 			},
 			boxShadow: {
 				'subtle': '0 4px 20px rgba(0, 0, 0, 0.08)',
-				'neon': '0 0 15px rgba(93, 63, 211, 0.4)',
-				'neon-strong': '0 0 20px rgba(93, 63, 211, 0.7)'
+				'neon': '0 0 15px rgba(124, 58, 237, 0.4)',
+				'neon-strong': '0 0 20px rgba(124, 58, 237, 0.7)'
 			},
 		}
 	},
