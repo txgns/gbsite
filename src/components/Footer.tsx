@@ -11,9 +11,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand Column */}
           <div>
-            <h2 className="text-2xl font-bold text-gradient mb-4">NEXUS</h2>
+            <h2 className="text-2xl font-bold text-gradient mb-4">GAMBIARRA ROBOTICS</h2>
             <p className="text-white/70 mb-6 max-w-xs">
-              Elevating esports through skill, strategy, and relentless dedication to excellence.
+              Elevando a robótica através de habilidade, estratégia e dedicação incansável à excelência.
             </p>
             <div className="flex space-x-4">
               {[
@@ -36,14 +36,14 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-white text-lg font-medium mb-4">Quick Links</h3>
+            <h3 className="text-white text-lg font-medium mb-4">Links Rápidos</h3>
             <ul className="space-y-3">
               {[
-                { label: 'Home', href: '#home' },
-                { label: 'Team', href: '#team' },
-                { label: 'Projects', href: '#projects' },
-                { label: 'Sponsors', href: '#sponsors' },
-                { label: 'Join Us', href: '#contact' },
+                { label: 'Início', href: '#home' },
+                { label: 'Equipe', href: '#team' },
+                { label: 'Projetos', href: '#projects' },
+                { label: 'Patrocinadores', href: '#sponsors' },
+                { label: 'Junte-se a nós', href: '#contact' },
               ].map((link, i) => (
                 <li key={i}>
                   <a 
@@ -59,12 +59,12 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white text-lg font-medium mb-4">Contact Us</h3>
+            <h3 className="text-white text-lg font-medium mb-4">Contate-nos</h3>
             <ul className="space-y-4">
               {[
-                { icon: <Mail size={18} />, text: 'contact@nexusesports.com' },
-                { icon: <MapPin size={18} />, text: 'Los Angeles, CA, USA' },
-                { icon: <Phone size={18} />, text: '+1 (555) 123-4567' },
+                { icon: <Mail size={18} />, text: 'contato@gambiarrarobotics.com' },
+                { icon: <MapPin size={18} />, text: 'São Paulo, SP, Brasil' },
+                { icon: <Phone size={18} />, text: '+55 (11) 98765-4321' },
               ].map((item, i) => (
                 <li key={i} className="flex items-start">
                   <span className="text-esports-purple-light mr-3 mt-0.5">
@@ -80,10 +80,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-white/50 text-sm mb-4 md:mb-0">
-            © {currentYear} NEXUS Esports. All rights reserved.
+            © {currentYear} GAMBIARRA ROBOTICS. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6">
-            {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item, i) => (
+            {['Política de Privacidade', 'Termos de Serviço', 'Política de Cookies'].map((item, i) => (
               <a 
                 key={i}
                 href="#"

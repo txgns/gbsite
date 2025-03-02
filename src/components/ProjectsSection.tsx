@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { 
@@ -20,45 +21,45 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Autonomous Rover',
-    category: 'Robotics',
-    date: 'August 2023',
+    title: 'Rover Autônomo',
+    category: 'Robótica',
+    date: 'Agosto 2023',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000',
-    description: 'A terrain-adaptive rover with computer vision capabilities designed for autonomous navigation in difficult environments.',
-    achievements: ['National Robotics Award', 'Terrain Navigation Challenge Winner', '95% Obstacle Avoidance Rate'],
+    description: 'Um rover adaptável a diferentes terrenos com capacidades de visão computacional projetado para navegação autônoma em ambientes difíceis.',
+    achievements: ['Prêmio Nacional de Robótica', 'Vencedor do Desafio de Navegação em Terrenos', '95% de Taxa de Evasão de Obstáculos'],
     icon: <Bot size={20} />,
     link: '#',
   },
   {
     id: 2,
-    title: 'Smart Prosthetic Hand',
-    category: 'Medical Robotics',
-    date: 'May 2023',
+    title: 'Mão Protética Inteligente',
+    category: 'Robótica Médica',
+    date: 'Maio 2023',
     image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&q=80&w=1000',
-    description: 'Affordable prosthetic hand with myoelectric sensors providing realistic movements and tactile feedback.',
-    achievements: ['Innovation in Healthcare Award', 'Open Source Design', 'Low-cost Manufacturing Process'],
+    description: 'Prótese de mão acessível com sensores mioelétricos que proporcionam movimentos realistas e feedback tátil.',
+    achievements: ['Prêmio de Inovação em Saúde', 'Design de Código Aberto', 'Processo de Fabricação de Baixo Custo'],
     icon: <Zap size={20} />,
     link: '#',
   },
   {
     id: 3,
-    title: 'Robotics Academy',
-    category: 'Education',
-    date: 'Ongoing',
+    title: 'Academia de Robótica',
+    category: 'Educação',
+    date: 'Em andamento',
     image: 'https://images.unsplash.com/photo-1560253023-3ec5d502b22f?auto=format&fit=crop&q=80&w=1000',
-    description: 'Weekly workshops teaching robotics, programming, and electronics to students from underrepresented communities.',
-    achievements: ['150+ Students Trained', '15 School Partnerships', 'Community Impact Recognition'],
+    description: 'Oficinas semanais ensinando robótica, programação e eletrônica para estudantes de comunidades sub-representadas.',
+    achievements: ['Mais de 150 Estudantes Treinados', '15 Parcerias com Escolas', 'Reconhecimento de Impacto na Comunidade'],
     icon: <CircuitBoard size={20} />,
     link: '#',
   },
   {
     id: 4,
-    title: 'Agricultural Drone',
-    category: 'Environmental',
-    date: 'December 2023',
+    title: 'Drone Agrícola',
+    category: 'Ambiental',
+    date: 'Dezembro 2023',
     image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&q=80&w=1000',
-    description: 'A customized drone system designed for precision farming, crop monitoring, and automated seed planting.',
-    achievements: ['Sustainable Tech Award', '30% Reduction in Water Usage', 'Implemented in 5 Farms'],
+    description: 'Um sistema de drone personalizado projetado para agricultura de precisão, monitoramento de cultivos e plantio automatizado de sementes.',
+    achievements: ['Prêmio de Tecnologia Sustentável', '30% de Redução no Uso de Água', 'Implementado em 5 Fazendas'],
     icon: <Cpu size={20} />,
     link: '#',
   },
@@ -78,10 +79,10 @@ const ProjectsSection = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 stagger-animation">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            <span className="text-gradient">Our Innovations</span>
+            <span className="text-gradient">Nossas Inovações</span>
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto">
-            Robotics solutions we've developed, competitions we've won, and communities we've impacted
+            Soluções robóticas que desenvolvemos, competições que vencemos e comunidades que impactamos
           </p>
         </div>
 
@@ -130,7 +131,7 @@ const ProjectsSection = () => {
                 <div className="mb-5">
                   <h4 className="text-white/90 text-sm font-medium mb-2 flex items-center">
                     <Award size={16} className="mr-2 text-robotics-purple-light" />
-                    Achievements
+                    Conquistas
                   </h4>
                   <ul className="space-y-1">
                     {project.achievements.map((achievement, i) => (
@@ -150,7 +151,7 @@ const ProjectsSection = () => {
                     href={project.link} 
                     className="inline-flex items-center text-robotics-purple-light hover:text-white transition-colors text-sm font-medium"
                   >
-                    View Details <ExternalLink size={14} className="ml-1" />
+                    Ver Detalhes <ExternalLink size={14} className="ml-1" />
                   </a>
                 )}
               </div>

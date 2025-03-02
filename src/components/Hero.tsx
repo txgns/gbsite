@@ -4,9 +4,8 @@ import { cn } from '@/lib/utils';
 import { ChevronDown, Cpu, Cog, Wrench } from 'lucide-react';
 
 const Hero = () => {
-  // Set competition date (3 months from now)
-  const competitionDate = new Date();
-  competitionDate.setMonth(competitionDate.getMonth() + 3);
+  // Define uma data fixa para a competição (exemplo: 10 de dezembro de 2024)
+  const competitionDate = new Date('2024-12-10T00:00:00');
   
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -21,7 +20,7 @@ const Hero = () => {
       const difference = competitionDate.getTime() - now.getTime();
       
       if (difference <= 0) {
-        // Competition has started
+        // A competição já começou
         setTimeRemaining({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
@@ -66,22 +65,22 @@ const Hero = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto flex flex-col items-center text-center">
         <span className="text-sm md:text-base uppercase tracking-widest text-robotics-purple-light animate-fade-in">
-          Innovation Through Engineering
+          Inovação Através da Engenharia
         </span>
         <h1 className="mt-4 text-4xl md:text-7xl font-bold stagger-animation">
           <span className="block">GAMBIARRA</span>
           <span className="block text-gradient mt-2">ROBOTICS</span>
         </h1>
         <p className="mt-6 max-w-lg text-base md:text-lg text-white/80 animate-fade-in">
-          Building the future through creative engineering solutions.
-          Join us as we push the boundaries of robotics and technology.
+          Construindo o futuro através de soluções criativas de engenharia.
+          Junte-se a nós enquanto ampliamos os limites da robótica e tecnologia.
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-6 md:gap-10">
           {[
-            { icon: <Cpu size={24} />, title: "Innovative Designs" },
-            { icon: <Cog size={24} />, title: "Engineering Excellence" },
-            { icon: <Wrench size={24} />, title: "Problem Solving" },
+            { icon: <Cpu size={24} />, title: "Designs Inovadores" },
+            { icon: <Cog size={24} />, title: "Excelência em Engenharia" },
+            { icon: <Wrench size={24} />, title: "Resolução de Problemas" },
           ].map((item, index) => (
             <div 
               key={index}
@@ -99,10 +98,10 @@ const Hero = () => {
         {/* Countdown Timer */}
         <div className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8">
           {[
-            { label: 'Days', value: timeRemaining.days },
-            { label: 'Hours', value: timeRemaining.hours },
-            { label: 'Minutes', value: timeRemaining.minutes },
-            { label: 'Seconds', value: timeRemaining.seconds }
+            { label: 'Dias', value: timeRemaining.days },
+            { label: 'Horas', value: timeRemaining.hours },
+            { label: 'Minutos', value: timeRemaining.minutes },
+            { label: 'Segundos', value: timeRemaining.seconds }
           ].map((item) => (
             <div key={item.label} className="countdown-item">
               <div className={cn(
@@ -117,13 +116,13 @@ const Hero = () => {
         </div>
         
         <p className="mt-6 text-white/60 text-sm animate-fade-in">
-          Until the next robotics competition
+          Até a próxima competição de robótica
         </p>
 
         <button 
           onClick={scrollToTeam}
           className="mt-12 animate-pulse-subtle"
-          aria-label="Scroll to team section"
+          aria-label="Rolar para a seção da equipe"
         >
           <ChevronDown size={32} className="text-white/70" />
         </button>
