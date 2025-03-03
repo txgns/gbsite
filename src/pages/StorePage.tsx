@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Filter, ShoppingCart, Search } from 'lucide-react';
+import { Filter, ShoppingCart, Search, Home, ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LoadingScreen from '@/components/LoadingScreen';
 import { useCart, Product } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 import products from '@/data/products';
 
 // Get unique categories from products
@@ -79,6 +80,16 @@ const StorePage = () => {
       {/* Main content */}
       <main className="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          {/* Back to home button */}
+          <div className="mb-4">
+            <Link to="/">
+              <Button variant="outline" className="gap-2 text-white/80 hover:bg-robotics-black-lighter hover:text-white border-white/10">
+                <ArrowLeft size={16} />
+                <span>Voltar ao Início</span>
+              </Button>
+            </Link>
+          </div>
+          
           {/* Hero section */}
           <div className="text-center mb-12 stagger-animation">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
