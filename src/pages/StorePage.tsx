@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Filter, ShoppingCart, Search } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import LoadingScreen from '@/components/LoadingScreen';
 import { useCart, Product } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import products from '@/data/products';
@@ -19,10 +20,18 @@ const StorePage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Scroll to top when component mounts
+  // Scroll to top and show loading screen when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Simulate loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   // Apply filters when dependencies change
@@ -58,6 +67,10 @@ const StorePage = () => {
       description: `${product.name} foi adicionado ao carrinho.`,
     });
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-robotics-black">

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ShoppingCart } from 'lucide-react';
@@ -52,12 +53,15 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const navigationItems = [
-    { name: 'Início', link: isStorePage ? '/#home' : '#home' },
-    { name: 'Equipe', link: isStorePage ? '/#team' : '#team' },
-    { name: 'Projetos', link: isStorePage ? '/#projects' : '#projects' },
-    { name: 'Patrocinadores', link: isStorePage ? '/#sponsors' : '#sponsors' }
-  ];
+  // Conditionally show navigation items based on whether we're on a store page
+  const navigationItems = isStorePage 
+    ? [] // Empty array for store pages - remove team, projects, sponsors
+    : [
+        { name: 'Início', link: isStorePage ? '/#home' : '#home' },
+        { name: 'Equipe', link: isStorePage ? '/#team' : '#team' },
+        { name: 'Projetos', link: isStorePage ? '/#projects' : '#projects' },
+        { name: 'Patrocinadores', link: isStorePage ? '/#sponsors' : '#sponsors' }
+      ];
 
   return (
     <header className={cn(
@@ -89,6 +93,7 @@ const Header = () => {
               {item.name}
             </a>
           ))}
+          {/* Always show the store link */}
           <Link 
             to="/loja" 
             className="nav-link text-white/90 hover:text-white text-sm font-medium tracking-wide transition-colors"
