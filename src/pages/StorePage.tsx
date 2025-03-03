@@ -93,10 +93,10 @@ const StorePage = () => {
           {/* Hero section */}
           <div className="text-center mb-12 stagger-animation">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-gradient">Loja Gambiarra Robotics</span>
+              <span className="text-gradient">Gambiarra Store</span>
             </h1>
             <p className="text-white/70 max-w-2xl mx-auto">
-              Equipamentos, componentes e produtos oficiais da nossa equipe de robótica.
+              Produtos oficiais da nossa equipe de robótica.
             </p>
           </div>
           

@@ -97,15 +97,15 @@ const SponsorsSection = () => {
         {/* Sponsor Call to Action */}
         <div className="mt-8 sm:mt-12 md:mt-16 text-center">
           <div className="glass-card max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto p-5 sm:p-8 rounded-xl">
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">Become Our Partner</h3>
+            <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">Seja nosso Parceiro!</h3>
             <p className="text-white/70 mb-4 sm:mb-6 max-w-sm sm:max-w-md md:max-w-xl mx-auto text-xs sm:text-sm md:text-base">
-              Join our roster of premium partners and connect your brand with our passionate gaming community
+              Junte-se a essa organização maluca como parceiro e comece a fazer parte de uma comunidade incrivel!
             </p>
             <a 
               href="#contact" 
               className="inline-block px-5 sm:px-8 py-2 sm:py-3 bg-robotics-purple text-white text-sm sm:text-base rounded-md hover:bg-robotics-purple-light transition-colors"
             >
-              Partner With Us
+              Junte-se a nós!
             </a>
           </div>
         </div>

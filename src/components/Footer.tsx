@@ -17,9 +17,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {[
-                { icon: <Twitter size={18} />, href: '#', label: 'Twitter' },
-                { icon: <Instagram size={18} />, href: '#', label: 'Instagram' },
-                { icon: <Twitch size={18} />, href: '#', label: 'Twitch' },
+                { icon: <Instagram size={18} />, href: 'https://www.instagram.com/gambiarra.robotics/', label: 'Instagram' },
                 { icon: <Youtube size={18} />, href: '#', label: 'YouTube' },
               ].map((social, i) => (
                 <a 
@@ -33,38 +31,15 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white text-lg font-medium mb-4">Links Rápidos</h3>
-            <ul className="space-y-3">
-              {[
-                { label: 'Início', href: '#home' },
-                { label: 'Equipe', href: '#team' },
-                { label: 'Projetos', href: '#projects' },
-                { label: 'Patrocinadores', href: '#sponsors' },
-                { label: 'Junte-se a nós', href: '#contact' },
-              ].map((link, i) => (
-                <li key={i}>
-                  <a 
-                    href={link.href} 
-                    className="text-white/70 hover:text-esports-purple-light transition-colors text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+          <div></div>
           {/* Contact */}
           <div>
             <h3 className="text-white text-lg font-medium mb-4">Contate-nos</h3>
             <ul className="space-y-4">
               {[
                 { icon: <Mail size={18} />, text: 'contato@gambiarrarobotics.com' },
-                { icon: <MapPin size={18} />, text: 'São Paulo, SP, Brasil' },
-                { icon: <Phone size={18} />, text: '+55 (11) 98765-4321' },
+                { icon: <MapPin size={18} />, text: 'Sorocaba, SP, Brasil' },
+                { icon: <Phone size={18} />, text: '' },
               ].map((item, i) => (
                 <li key={i} className="flex items-start">
                   <span className="text-esports-purple-light mr-3 mt-0.5">
