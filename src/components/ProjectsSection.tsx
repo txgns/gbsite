@@ -21,8 +21,8 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'Rover Autônomo',
-    category: 'Robótica',
+    title: 'Hastur',
+    category: 'Combate',
     date: 'Agosto 2023',
     image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1000',
     description: 'Um rover adaptável a diferentes terrenos com capacidades de visão computacional projetado para navegação autônoma em ambientes difíceis.',
@@ -32,13 +32,13 @@ const projects: Project[] = [
   },
   {
     id: 2,
-    title: 'Mão Protética Inteligente',
-    category: 'Robótica Médica',
+    title: 'Cavaleiros da Gambiarra Micro',
+    category: 'Hockey',
     date: 'Maio 2023',
     image: 'https://images.unsplash.com/photo-1551103782-8ab07afd45c1?auto=format&fit=crop&q=80&w=1000',
     description: 'Prótese de mão acessível com sensores mioelétricos que proporcionam movimentos realistas e feedback tátil.',
     achievements: ['Prêmio de Inovação em Saúde', 'Design de Código Aberto', 'Processo de Fabricação de Baixo Custo'],
-    icon: <Zap size={20} />,
+    icon: <Bot size={20} />,
     link: '#',
   },
   {
@@ -49,7 +49,7 @@ const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1560253023-3ec5d502b22f?auto=format&fit=crop&q=80&w=1000',
     description: 'Oficinas semanais ensinando robótica, programação e eletrônica para estudantes de comunidades sub-representadas.',
     achievements: ['Mais de 150 Estudantes Treinados', '15 Parcerias com Escolas', 'Reconhecimento de Impacto na Comunidade'],
-    icon: <CircuitBoard size={20} />,
+    icon: <Bot size={20} />,
     link: '#',
   },
   {
@@ -60,7 +60,7 @@ const projects: Project[] = [
     image: 'https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&q=80&w=1000',
     description: 'Um sistema de drone personalizado projetado para agricultura de precisão, monitoramento de cultivos e plantio automatizado de sementes.',
     achievements: ['Prêmio de Tecnologia Sustentável', '30% de Redução no Uso de Água', 'Implementado em 5 Fazendas'],
-    icon: <Cpu size={20} />,
+    icon: <Bot size={20} />,
     link: '#',
   },
 ];
@@ -79,10 +79,10 @@ const ProjectsSection = () => {
       <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12 md:mb-16 stagger-animation">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">
-            <span className="text-gradient">Nossas Inovações</span>
+            <span className="text-gradient">Nossos Projetos</span>
           </h2>
           <p className="text-white/70 max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-sm sm:text-base">
-            Soluções robóticas que desenvolvemos, competições que vencemos e comunidades que impactamos
+            Projetos que ja desenvolvemos e projetos que vamos desenvolver
           </p>
         </div>
 

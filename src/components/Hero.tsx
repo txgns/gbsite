@@ -1,11 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronDown, Cpu, Cog, Wrench } from 'lucide-react';
+import { ChevronDown, Cpu, Cog, Wrench, Bot } from 'lucide-react';
 
 const Hero = () => {
   // Define a specific date for the competition (May 1, 2025)
-  const competitionDate = new Date('2025-05-01T00:00:00');
+  const competitionDate = new Date('2025-05-01T08:00:00');
   
   const [timeRemaining, setTimeRemaining] = useState({
     days: 0,
@@ -65,22 +65,22 @@ const Hero = () => {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center text-center">
         <span className="text-xs sm:text-sm md:text-base uppercase tracking-widest text-robotics-purple-light animate-fade-in">
-          Inovação Através da Engenharia
+          Improvisar sempre, desistir jamais!
         </span>
         <h1 className="mt-2 sm:mt-4 text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold stagger-animation">
           <span className="block">GAMBIARRA</span>
           <span className="block text-gradient mt-1 sm:mt-2">ROBOTICS</span>
         </h1>
         <p className="mt-4 sm:mt-6 max-w-sm sm:max-w-lg text-sm sm:text-base md:text-lg text-white/80 animate-fade-in px-4">
-          Construindo o futuro através de soluções criativas de engenharia.
-          Junte-se a nós enquanto ampliamos os limites da robótica e tecnologia.
+          A equipe onde o objetivo é participar de toda e qualquer
+          competição maluca que existir, e claro sempre se divertir!
         </p>
 
         <div className="mt-6 sm:mt-10 flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-10">
           {[
-            { icon: <Cpu size={20} className="sm:w-6 sm:h-6" />, title: "Designs Inovadores" },
-            { icon: <Cog size={20} className="sm:w-6 sm:h-6" />, title: "Excelência em Engenharia" },
-            { icon: <Wrench size={20} className="sm:w-6 sm:h-6" />, title: "Resolução de Problemas" },
+            { icon: <Bot size={20} className="sm:w-6 sm:h-6" />, title: "Combate" },
+            { icon: <Bot size={20} className="sm:w-6 sm:h-6" />, title: "Sumô" },
+            { icon: <Bot size={20} className="sm:w-6 sm:h-6" />, title: "Hockey" },
           ].map((item, index) => (
             <div 
               key={index}
@@ -115,7 +115,8 @@ const Hero = () => {
           ))}
         </div>
         
-        <p className="mt-4 sm:mt-6 text-white/60 text-xs sm:text-sm animate-fade-in">
+        
+        <p className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl lg:text-2xl font-bold stagger-animation">
           Até a próxima competição de robótica
         </p>
 

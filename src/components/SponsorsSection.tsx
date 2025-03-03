@@ -62,10 +62,10 @@ const SponsorsSection = () => {
       <div className="w-full max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12 md:mb-16 stagger-animation">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">
-            <span className="text-gradient">Our Partners</span>
+            <span className="text-gradient">Nossos Parceiros</span>
           </h2>
           <p className="text-white/70 max-w-xs sm:max-w-md md:max-w-2xl mx-auto text-sm sm:text-base">
-            Teaming up with industry leaders to elevate our performance and reach
+            Aqui estão nossos parceiros, são eles que nos ajudam a manter esse equipe de pé!
           </p>
         </div>
 
