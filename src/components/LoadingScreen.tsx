@@ -10,7 +10,7 @@ const LoadingScreen = () => {
           <div className="w-28 h-28 rounded-full bg-robotics-purple/20 animate-pulse-subtle flex items-center justify-center overflow-hidden">
             <Bot size={64} className="text-robotics-purple animate-bounce" />
           </div>
-          <div className="absolute inset-0 rounded-full border-t-2 border-robotics-purple animate-spin" />
+          
           <Sparkles className="absolute top-0 right-0 text-robotics-purple-light animate-pulse" size={18} />
           <Sparkles className="absolute bottom-2 left-2 text-robotics-purple-light animate-pulse" size={14} />
         </div>
@@ -24,7 +24,7 @@ const LoadingScreen = () => {
         </p>
         
         <div className="w-48 h-1.5 bg-robotics-black-lighter rounded-full mx-auto overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-robotics-purple to-robotics-purple-light animate-[slide-in-right_1.5s_ease-in-out_infinite]"></div>
+        <div className="h-full bg-gradient-to-r from-robotics-purple to-robotics-purple-light animate-[slide-in-left_1.5s_ease-in-out_infinite]"></div>
         </div>
       </div>
     </div>
