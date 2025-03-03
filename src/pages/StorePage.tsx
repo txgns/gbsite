@@ -20,6 +20,11 @@ const StorePage = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Apply filters when dependencies change
   useEffect(() => {
     let result = products;

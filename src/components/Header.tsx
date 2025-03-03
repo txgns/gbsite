@@ -1,10 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, X, ShoppingCart } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
@@ -18,14 +18,12 @@ const Header = () => {
       }
     };
 
-    // Update cart count from localStorage when header mounts
     const storedCart = localStorage.getItem('cart');
     if (storedCart) {
       const cartItems = JSON.parse(storedCart);
       setCartCount(cartItems.length);
     }
 
-    // Listen for cart updates
     const handleCartUpdate = () => {
       const storedCart = localStorage.getItem('cart');
       if (storedCart) {
@@ -45,9 +43,21 @@ const Header = () => {
     };
   }, []);
 
+  const isStorePage = location.pathname.includes('/loja') || 
+                      location.pathname.includes('/product') || 
+                      location.pathname.includes('/cart') ||
+                      location.pathname.includes('/checkout');
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
+  const navigationItems = [
+    { name: 'Início', link: isStorePage ? '/#home' : '#home' },
+    { name: 'Equipe', link: isStorePage ? '/#team' : '#team' },
+    { name: 'Projetos', link: isStorePage ? '/#projects' : '#projects' },
+    { name: 'Patrocinadores', link: isStorePage ? '/#sponsors' : '#sponsors' }
+  ];
 
   return (
     <header className={cn(
@@ -56,7 +66,6 @@ const Header = () => {
     )}>
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center">
-          {/* Polvo icon */}
           <Link to="/">
             <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 32 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-bot">
               <path d="M12 8V4H8"/>
@@ -70,17 +79,11 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-gradient"> GAMBIARRA ROBOTICS</h1>
         </div>
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          {[
-            { name: 'Início', link: 'home' },
-            { name: 'Equipe', link: 'team' },
-            { name: 'Projetos', link: 'projects' },
-            { name: 'Patrocinadores', link: 'sponsors' }
-          ].map((item) => (
+          {navigationItems.map((item) => (
             <a 
               key={item.name} 
-              href={`#${item.link}`} 
+              href={item.link} 
               className="nav-link text-white/90 hover:text-white text-sm font-medium tracking-wide transition-colors"
             >
               {item.name}
@@ -93,7 +96,7 @@ const Header = () => {
             Loja
           </Link>
           <a 
-            href="#contact" 
+            href={isStorePage ? "/#contact" : "#contact"}
             className="px-6 py-2 bg-robotics-purple text-white rounded-md hover:bg-robotics-purple-light transition-colors"
           >
             Contato
@@ -108,7 +111,6 @@ const Header = () => {
           </Link>
         </nav>
 
-        {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center gap-4">
           <Link to="/cart" className="relative">
             <ShoppingCart className="text-white hover:text-robotics-purple-light transition-colors" />
@@ -128,19 +130,13 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {mobileMenuOpen && (
         <div className="md:hidden fixed inset-0 top-[72px] bg-robotics-black/95 backdrop-blur-md z-40 flex flex-col items-center pt-12">
           <div className="flex flex-col items-center space-y-8">
-            {[
-              { name: 'Início', link: 'home' },
-              { name: 'Equipe', link: 'team' },
-              { name: 'Projetos', link: 'projects' },
-              { name: 'Patrocinadores', link: 'sponsors' }
-            ].map((item) => (
+            {navigationItems.map((item) => (
               <a 
                 key={item.name} 
-                href={`#${item.link}`} 
+                href={item.link} 
                 className="text-white text-2xl font-medium"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -155,7 +151,7 @@ const Header = () => {
               Loja
             </Link>
             <a 
-              href="#contact" 
+              href={isStorePage ? "/#contact" : "#contact"}
               className="px-8 py-3 bg-robotics-purple text-white rounded-md text-xl mt-4"
               onClick={() => setMobileMenuOpen(false)}
             >
