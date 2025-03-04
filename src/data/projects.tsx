@@ -18,15 +18,15 @@ export type Project = {
 export const getProjectIcon = (projectId: number) => {
   switch (projectId) {
     case 1:
-      return Bot;
+      return <Bot size={20} />;
     case 2:
-      return Bot;
+      return <Bot size={20} />;
     case 3:
-      return Bot;
+      return <Bot size={20} />;
     case 4:
-      return Bot;
+      return <Bot size={20} />;
     default:
-      return CircuitBoard;
+      return <CircuitBoard size={20} />;
   }
 };
 
