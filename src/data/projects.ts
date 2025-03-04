@@ -12,6 +12,8 @@ export type Project = {
   achievements: string[];
   icon: string;
   link?: string;
+  images?: string[];
+  video?: string;
 };
 
 // Function to create project icons that will be used in components
@@ -45,6 +47,12 @@ export const projects: Project[] = [
     ],
     icon: 'Bot',
     link: '/project/1',
+    images: [
+      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475',
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6'
+    ],
+    video: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
   },
   {
     id: 2,
@@ -60,6 +68,12 @@ export const projects: Project[] = [
     ],
     icon: 'Bot',
     link: '/project/2',
+    images: [
+      'https://images.unsplash.com/photo-1518770660439-4636190af475',
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
+      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b'
+    ],
+    video: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
   },
   {
     id: 3,
@@ -75,6 +89,12 @@ export const projects: Project[] = [
     ],
     icon: 'Bot',
     link: '/project/3',
+    images: [
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6',
+      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475'
+    ],
+    video: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
   },
   {
     id: 4,
@@ -90,5 +110,11 @@ export const projects: Project[] = [
     ],
     icon: 'Bot',
     link: '/project/4',
+    images: [
+      'https://images.unsplash.com/photo-1518770660439-4636190af475',
+      'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b',
+      'https://images.unsplash.com/photo-1461749280684-dccba630e2f6'
+    ],
+    video: 'https://www.youtube.com/embed/dQw4w9WgXcQ'
   },
 ];

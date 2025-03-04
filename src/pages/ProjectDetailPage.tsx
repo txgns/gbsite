@@ -1,12 +1,14 @@
 
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Award, ChevronRight } from 'lucide-react';
+import { ArrowLeft, Calendar, Award, ChevronRight, Image as ImageIcon, Film } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { projects } from '@/data/projects';
 import { cn } from '@/lib/utils';
+import ProjectCarousel from '@/components/ProjectCarousel';
+import ProjectVideo from '@/components/ProjectVideo';
 
 const ProjectDetailPage = () => {
   const { id } = useParams();
@@ -81,6 +83,31 @@ const ProjectDetailPage = () => {
                   <p className="text-white/80 text-lg leading-relaxed">
                     {project.description}
                   </p>
+                </div>
+                
+                {/* Carrossel de Imagens */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-4 flex items-center">
+                    <ImageIcon size={20} className="mr-2 text-robotics-purple-light" />
+                    Galeria de Imagens
+                  </h2>
+                  {project.images && project.images.length > 0 ? (
+                    <ProjectCarousel images={project.images} />
+                  ) : (
+                    <div className="w-full bg-robotics-black-lighter rounded-xl p-8 text-center">
+                      <ImageIcon size={40} className="text-robotics-purple-light/50 mx-auto mb-2" />
+                      <p className="text-white/50">Nenhuma imagem disponível para este projeto</p>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Área de Vídeo */}
+                <div className="mb-8">
+                  <h2 className="text-xl font-semibold mb-4 flex items-center">
+                    <Film size={20} className="mr-2 text-robotics-purple-light" />
+                    Vídeo do Projeto
+                  </h2>
+                  <ProjectVideo videoUrl={project.video} />
                 </div>
                 
                 <div className="mb-8">
