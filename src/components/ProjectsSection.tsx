@@ -1,69 +1,9 @@
 
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { 
-  Award, Calendar, ExternalLink, ChevronRight, 
-  Cpu, Bot, Zap, CircuitBoard
-} from 'lucide-react';
-
-type Project = {
-  id: number;
-  title: string;
-  category: string;
-  date: string;
-  image: string;
-  description: string;
-  achievements: string[];
-  icon: React.ReactNode;
-  link?: string;
-};
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Hastur',
-    category: 'Combate',
-    date: 'Projeto em Andamento',
-    image: '',
-    description: 'Beetle Vertical Spinner',
-    achievements: ['', '', ''],
-    icon: <Bot size={20} />,
-    link: '#',
-  },
-  {
-    id: 2,
-    title: 'Cavaleiros da Gambiarra Micro',
-    category: 'Hockey',
-    date: 'Projeto em Andamento',
-    image: '',
-    description: 'Time de Hockey Micro',
-    achievements: ['', '', ''],
-    icon: <Bot size={20} />,
-    link: '#',
-  },
-  {
-    id: 3,
-    title: 'Conceito',
-    category: 'Sumô Mini',
-    date: 'Projeto em Andamento',
-    image: '',
-    description: 'Mini Sumo de 500g',
-    achievements: ['', '', ''],
-    icon: <Bot size={20} />,
-    link: '#',
-  },
-  {
-    id: 4,
-    title: 'Mitsu',
-    category: 'Sumô Lego',
-    date: 'Projeto em Andamento',
-    image: '',
-    description: 'Sumo lego Pro de 1kg',
-    achievements: ['', '', ''],
-    icon: <Bot size={20} />,
-    link: '#',
-  },
-];
+import { ExternalLink, ChevronRight, Award, Calendar } from 'lucide-react';
+import { projects } from '@/data/projects';
 
 const ProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
@@ -100,14 +40,21 @@ const ProjectsSection = () => {
               onMouseLeave={() => setActiveProject(null)}
             >
               <div className="relative h-40 sm:h-48 md:h-56 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
-                  style={{ 
-                    transform: activeProject === project.id ? 'scale(1.05)' : 'scale(1)'
-                  }}
-                />
+                {project.image ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover transition-transform duration-500 ease-in-out"
+                    style={{ 
+                      transform: activeProject === project.id ? 'scale(1.05)' : 'scale(1)'
+                    }}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-robotics-purple-dark/30 flex items-center justify-center">
+                    {project.icon}
+                    <span className="ml-2">{project.category}</span>
+                  </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-robotics-black/90 to-transparent"></div>
                 <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center space-x-2">
                   <span className="bg-robotics-purple/90 text-white text-xs px-2 sm:px-3 py-1 rounded-full flex items-center">
@@ -134,25 +81,28 @@ const ProjectsSection = () => {
                     Conquistas
                   </h4>
                   <ul className="space-y-1">
-                    {project.achievements.map((achievement, i) => (
+                    {project.achievements.slice(0, 2).map((achievement, i) => (
                       <li 
                         key={i} 
-                        className="text-white/70 text-xs sm:text-sm flex items-center"
+                        className={cn(
+                          "text-white/70 text-xs sm:text-sm flex items-center",
+                          !achievement && "text-white/40 italic"
+                        )}
                       >
                         <ChevronRight size={12} className="mr-1 text-robotics-purple-light sm:w-4 sm:h-4" />
-                        {achievement}
+                        {achievement || "Nenhuma conquista registrada ainda"}
                       </li>
                     ))}
                   </ul>
                 </div>
                 
                 {project.link && (
-                  <a 
-                    href={project.link} 
+                  <Link 
+                    to={project.link} 
                     className="inline-flex items-center text-robotics-purple-light hover:text-white transition-colors text-xs sm:text-sm font-medium"
                   >
                     Ver Detalhes <ExternalLink size={12} className="ml-1 sm:w-4 sm:h-4" />
-                  </a>
+                  </Link>
                 )}
               </div>
             </div>
