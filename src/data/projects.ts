@@ -10,8 +10,24 @@ export type Project = {
   image: string;
   description: string;
   achievements: string[];
-  icon: React.ReactNode;
+  icon: string;
   link?: string;
+};
+
+// Function to create project icons that will be used in components
+export const getProjectIcon = (projectId: number) => {
+  switch (projectId) {
+    case 1:
+      return <Bot size={20} />;
+    case 2:
+      return <Bot size={20} />;
+    case 3:
+      return <Bot size={20} />;
+    case 4:
+      return <Bot size={20} />;
+    default:
+      return <CircuitBoard size={20} />;
+  }
 };
 
 export const projects: Project[] = [
@@ -27,7 +43,7 @@ export const projects: Project[] = [
       'Vencedor da categoria Melhor Design de Arma 2022',
       'Participação em 5 competições nacionais'
     ],
-    icon: <Bot size={20} />,
+    icon: 'Bot',
     link: '/project/1',
   },
   {
@@ -42,7 +58,7 @@ export const projects: Project[] = [
       'Melhor Estratégia de Defesa na RoboCup Brasil',
       'Reconhecimento por Inovação em Sistemas Cooperativos'
     ],
-    icon: <Bot size={20} />,
+    icon: 'Bot',
     link: '/project/2',
   },
   {
@@ -57,7 +73,7 @@ export const projects: Project[] = [
       'Terceiro lugar no Torneio Nacional de Robótica',
       'Recorde de vitória mais rápida: 1.2 segundos'
     ],
-    icon: <Bot size={20} />,
+    icon: 'Bot',
     link: '/project/3',
   },
   {
@@ -72,7 +88,7 @@ export const projects: Project[] = [
       'Melhor Construção LEGO no Campeonato Brasileiro de Robótica',
       'Participação na LEGO League International'
     ],
-    icon: <Bot size={20} />,
+    icon: 'Bot',
     link: '/project/4',
   },
 ];

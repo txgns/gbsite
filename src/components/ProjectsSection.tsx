@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { ExternalLink, ChevronRight, Award, Calendar } from 'lucide-react';
-import { projects } from '@/data/projects';
+import { projects, getProjectIcon } from '@/data/projects';
 
 const ProjectsSection = () => {
   const [activeProject, setActiveProject] = useState<number | null>(null);
@@ -51,14 +51,14 @@ const ProjectsSection = () => {
                   />
                 ) : (
                   <div className="w-full h-full bg-robotics-purple-dark/30 flex items-center justify-center">
-                    {project.icon}
+                    {getProjectIcon(project.id)}
                     <span className="ml-2">{project.category}</span>
                   </div>
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-robotics-black/90 to-transparent"></div>
                 <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center space-x-2">
                   <span className="bg-robotics-purple/90 text-white text-xs px-2 sm:px-3 py-1 rounded-full flex items-center">
-                    {project.icon}
+                    {getProjectIcon(project.id)}
                     <span className="ml-1 text-[10px] sm:text-xs">{project.category}</span>
                   </span>
                 </div>
