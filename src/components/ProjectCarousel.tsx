@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -10,17 +10,53 @@ interface ProjectCarouselProps {
 
 const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // Auto-play do carrossel
+  useEffect(() => {
+    if (images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setCurrentIndex((prevIndex) => 
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+      
+      // Reset do estado de transição após a animação
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+      }, 500);
+      
+      return () => clearTimeout(timer);
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   const handlePrevious = () => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+    
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
   };
 
   const handleNext = () => {
+    if (isTransitioning) return;
+    
+    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
+    
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
   };
 
   if (!images || images.length === 0) {
@@ -60,6 +96,7 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           size="icon" 
           onClick={handlePrevious}
           className="bg-robotics-black/60 hover:bg-robotics-black/80 rounded-full"
+          disabled={isTransitioning}
         >
           <ChevronLeft className="h-6 w-6" />
           <span className="sr-only">Anterior</span>
@@ -69,6 +106,7 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           size="icon" 
           onClick={handleNext}
           className="bg-robotics-black/60 hover:bg-robotics-black/80 rounded-full"
+          disabled={isTransitioning}
         >
           <ChevronRight className="h-6 w-6" />
           <span className="sr-only">Próximo</span>
@@ -86,7 +124,14 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
                   ? "bg-robotics-purple-light" 
                   : "bg-white/50 hover:bg-white/70"
               )}
-              onClick={() => setCurrentIndex(index)}
+              onClick={() => {
+                if (isTransitioning) return;
+                setIsTransitioning(true);
+                setCurrentIndex(index);
+                setTimeout(() => {
+                  setIsTransitioning(false);
+                }, 500);
+              }}
               aria-label={`Ir para imagem ${index + 1}`}
             />
           ))}
