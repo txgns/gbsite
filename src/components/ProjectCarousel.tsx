@@ -107,8 +107,7 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
       <div className="absolute bottom-0 left-0 right-0 px-4 pb-2">
         <Progress 
           value={progress} 
-          className="h-1 bg-robotics-black-lighter/50"
-          indicatorClassName="bg-robotics-purple transition-all ease-linear"
+          className={cn("h-1 bg-robotics-black-lighter/50")}
         />
       </div>
     </div>
