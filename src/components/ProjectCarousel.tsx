@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { Progress } from '@/components/ui/progress';
 
 interface ProjectCarouselProps {
   images: string[];
@@ -10,26 +11,43 @@ interface ProjectCarouselProps {
 
 const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const autoScrollInterval = 5000; // 5 seconds
   
   // Auto-scroll functionality
   useEffect(() => {
     const intervalId = setInterval(() => {
       handleNext();
-    }, 5000); // Change image every 5 seconds
+    }, autoScrollInterval); // Change image every 5 seconds
     
     return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [currentIndex]);
+
+  // Progress bar effect
+  useEffect(() => {
+    const startTime = Date.now();
+    
+    const progressInterval = setInterval(() => {
+      const elapsedTime = Date.now() - startTime;
+      const progressPercentage = Math.min((elapsedTime / autoScrollInterval) * 100, 100);
+      setProgress(progressPercentage);
+    }, 50); // Update every 50ms for smoother animation
+    
+    return () => clearInterval(progressInterval);
   }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
+    setProgress(0); // Reset progress when manually changing image
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
+    setProgress(0); // Reset progress when manually changing image
   };
 
   console.log("ProjectCarousel - images:", images);
@@ -83,6 +101,15 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           <ChevronRight className="h-6 w-6" />
           <span className="sr-only">Próximo</span>
         </Button>
+      </div>
+      
+      {/* Progress bar */}
+      <div className="absolute bottom-0 left-0 right-0 px-4 pb-2">
+        <Progress 
+          value={progress} 
+          className="h-1 bg-robotics-black-lighter/50"
+          indicatorClassName="bg-robotics-purple transition-all ease-linear"
+        />
       </div>
     </div>
   );
