@@ -39,7 +39,7 @@ export const projects: Project[] = [
     category: 'Combate',
     date: 'Projeto em Andamento',
     image: '',
-    description: 'Beetle Vertical Spinner - um robô de combate projetado para competições, com um disco vertical giratório de alta rotação capaz de causar danos significativos aos oponentes. Sua estrutura compacta e resistente permite movimentos ágeis na arena, enquanto seu sistema de arma gera forças destrutivas através da energia cinética.',
+    description: 'Beetle Vertical Spinner ',
     achievements: [
       'Semifinalista na Liga Robótica Brasil 2023',
       'Vencedor da categoria Melhor Design de Arma 2022',
