@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -10,6 +10,15 @@ interface ProjectCarouselProps {
 
 const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Auto-scroll functionality
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      handleNext();
+    }, 5000); // Change image every 5 seconds
+    
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [currentIndex]);
 
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => 
@@ -42,7 +51,7 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           <img
             src={images[currentIndex]}
             alt={`Imagem ${currentIndex + 1}`}
-            className="w-full h-full object-cover rounded-xl"
+            className="w-full h-full object-cover rounded-xl transition-opacity duration-500"
             onError={(e) => {
               console.error(`Error loading image at index ${currentIndex}:`, images[currentIndex]);
               e.currentTarget.src = "https://images.unsplash.com/photo-1518770660439-4636190af475"; // Fallback image
