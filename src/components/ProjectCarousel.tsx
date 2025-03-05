@@ -59,6 +59,10 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
     }, 500);
   };
 
+  // Add debugging to help troubleshoot
+  console.log("ProjectCarousel - images:", images);
+  console.log("ProjectCarousel - currentIndex:", currentIndex);
+
   if (!images || images.length === 0) {
     return (
       <div className="w-full h-64 bg-robotics-black-lighter flex flex-col items-center justify-center rounded-xl">
@@ -84,6 +88,10 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
                 src={image}
                 alt={`Imagem ${index + 1}`}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.error(`Error loading image at index ${index}:`, image);
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1518770660439-4636190af475"; // Fallback image
+                }}
               />
             </div>
           ))}

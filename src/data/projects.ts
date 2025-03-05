@@ -48,8 +48,8 @@ export const projects: Project[] = [
     icon: 'Bot',
     link: '/project/1',
     images: [
-      'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2',
-      'https://images.unsplash.com/photo-1558137623-ce933996c730',
+      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475',
       'https://images.unsplash.com/photo-1531297484001-80022131f5a1',
       'https://images.unsplash.com/photo-1555255707-c07966088b7b',
       'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5'
