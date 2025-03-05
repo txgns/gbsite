@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -10,56 +10,19 @@ interface ProjectCarouselProps {
 
 const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  // Auto-play do carrossel
-  useEffect(() => {
-    if (images.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setCurrentIndex((prevIndex) => 
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      );
-      
-      // Reset do estado de transição após a animação
-      const timer = setTimeout(() => {
-        setIsTransitioning(false);
-      }, 500);
-      
-      return () => clearTimeout(timer);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, [images.length]);
 
   const handlePrevious = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
-    
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 500);
   };
 
   const handleNext = () => {
-    if (isTransitioning) return;
-    
-    setIsTransitioning(true);
     setCurrentIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-    
-    setTimeout(() => {
-      setIsTransitioning(false);
-    }, 500);
   };
 
-  // Add debugging to help troubleshoot
   console.log("ProjectCarousel - images:", images);
   console.log("ProjectCarousel - currentIndex:", currentIndex);
 
@@ -75,26 +38,20 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
   return (
     <div className="relative w-full overflow-hidden rounded-xl">
       <div className="aspect-w-16 aspect-h-9 bg-robotics-black-lighter">
-        <div className="relative w-full h-full">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={cn(
-                "absolute inset-0 transition-opacity duration-500 ease-in-out",
-                index === currentIndex ? "opacity-100" : "opacity-0"
-              )}
-            >
-              <img
-                src={image}
-                alt={`Imagem ${index + 1}`}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  console.error(`Error loading image at index ${index}:`, image);
-                  e.currentTarget.src = "https://images.unsplash.com/photo-1518770660439-4636190af475"; // Fallback image
-                }}
-              />
-            </div>
-          ))}
+        <div className="relative w-full h-64 sm:h-80 md:h-96">
+          <img
+            src={images[currentIndex]}
+            alt={`Imagem ${currentIndex + 1}`}
+            className="w-full h-full object-cover rounded-xl"
+            onError={(e) => {
+              console.error(`Error loading image at index ${currentIndex}:`, images[currentIndex]);
+              e.currentTarget.src = "https://images.unsplash.com/photo-1518770660439-4636190af475"; // Fallback image
+            }}
+          />
+          
+          <div className="absolute bottom-4 right-4 bg-robotics-black/70 px-3 py-1 rounded-full text-sm text-white/80">
+            {currentIndex + 1} / {images.length}
+          </div>
         </div>
       </div>
       
@@ -104,7 +61,6 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           size="icon" 
           onClick={handlePrevious}
           className="bg-robotics-black/60 hover:bg-robotics-black/80 rounded-full"
-          disabled={isTransitioning}
         >
           <ChevronLeft className="h-6 w-6" />
           <span className="sr-only">Anterior</span>
@@ -114,36 +70,10 @@ const ProjectCarousel = ({ images }: ProjectCarouselProps) => {
           size="icon" 
           onClick={handleNext}
           className="bg-robotics-black/60 hover:bg-robotics-black/80 rounded-full"
-          disabled={isTransitioning}
         >
           <ChevronRight className="h-6 w-6" />
           <span className="sr-only">Próximo</span>
         </Button>
-      </div>
-      
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center">
-        <div className="flex space-x-2">
-          {images.map((_, index) => (
-            <button
-              key={index}
-              className={cn(
-                "w-2 h-2 rounded-full transition-colors",
-                index === currentIndex 
-                  ? "bg-robotics-purple-light" 
-                  : "bg-white/50 hover:bg-white/70"
-              )}
-              onClick={() => {
-                if (isTransitioning) return;
-                setIsTransitioning(true);
-                setCurrentIndex(index);
-                setTimeout(() => {
-                  setIsTransitioning(false);
-                }, 500);
-              }}
-              aria-label={`Ir para imagem ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );

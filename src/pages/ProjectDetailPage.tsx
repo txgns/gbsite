@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Award, ChevronRight, Image as ImageIcon, Film } from 'lucide-react';
@@ -85,7 +84,6 @@ const ProjectDetailPage = () => {
                   </p>
                 </div>
                 
-                {/* Carrossel de Imagens */}
                 <div className="mb-8">
                   <h2 className="text-xl font-semibold mb-4 flex items-center">
                     <ImageIcon size={20} className="mr-2 text-robotics-purple-light" />
@@ -101,7 +99,6 @@ const ProjectDetailPage = () => {
                   )}
                 </div>
                 
-                {/* Área de Vídeo */}
                 <div className="mb-8">
                   <h2 className="text-xl font-semibold mb-4 flex items-center">
                     <Film size={20} className="mr-2 text-robotics-purple-light" />
