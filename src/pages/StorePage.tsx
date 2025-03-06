@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Filter, ShoppingCart, Search, Home, ArrowLeft } from 'lucide-react';
+import { Filter, ShoppingCart, Search, ArrowLeft } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import LoadingScreen from '@/components/LoadingScreen';
@@ -10,7 +9,6 @@ import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import products from '@/data/products';
 
-// Get unique categories from products
 const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
 
 const StorePage = () => {
@@ -23,11 +21,9 @@ const StorePage = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Scroll to top and show loading screen when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // Simulate loading delay
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 1500);
@@ -35,16 +31,13 @@ const StorePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Apply filters when dependencies change
   useEffect(() => {
     let result = products;
     
-    // Filter by category
     if (selectedCategory !== 'Todos') {
       result = result.filter(product => product.category === selectedCategory);
     }
     
-    // Filter by search query
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       result = result.filter(product => 
@@ -53,7 +46,6 @@ const StorePage = () => {
       );
     }
     
-    // Filter by price range
     result = result.filter(product => 
       product.price >= priceRange[0] && product.price <= priceRange[1]
     );
@@ -77,10 +69,8 @@ const StorePage = () => {
     <div className="flex flex-col min-h-screen bg-robotics-black">
       <Header />
       
-      {/* Main content */}
       <main className="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          {/* Back to home button */}
           <div className="mb-4">
             <Link to="/">
               <Button variant="outline" className="gap-2 text-white/80 hover:bg-robotics-black-lighter hover:text-white border-white/10">
@@ -90,7 +80,6 @@ const StorePage = () => {
             </Link>
           </div>
           
-          {/* Hero section */}
           <div className="text-center mb-12 stagger-animation">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               <span className="text-gradient">Gambiarra Store</span>
@@ -100,10 +89,8 @@ const StorePage = () => {
             </p>
           </div>
           
-          {/* Search and Filters */}
           <div className="mb-8 glass-card p-4 rounded-lg">
             <div className="flex flex-col md:flex-row gap-4 justify-between">
-              {/* Search */}
               <div className="relative flex-grow max-w-md">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   <Search className="w-5 h-5 text-gray-400" />
@@ -117,7 +104,6 @@ const StorePage = () => {
                 />
               </div>
               
-              {/* Filter toggle (mobile) */}
               <div className="md:hidden">
                 <button
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
@@ -128,7 +114,6 @@ const StorePage = () => {
                 </button>
               </div>
               
-              {/* Desktop filters */}
               <div className="hidden md:flex items-center gap-4">
                 <div className="text-white text-sm">Filtrar por:</div>
                 <div className="flex gap-2 flex-wrap">
@@ -149,7 +134,6 @@ const StorePage = () => {
               </div>
             </div>
             
-            {/* Mobile filters (expandable) */}
             {isFilterOpen && (
               <div className="mt-4 pt-4 border-t border-white/10 md:hidden">
                 <h3 className="text-white font-medium mb-2">Categorias</h3>
@@ -188,7 +172,6 @@ const StorePage = () => {
               </div>
             )}
             
-            {/* Desktop price filter */}
             <div className="hidden md:block mt-4">
               <div className="flex items-center gap-4">
                 <h3 className="text-white text-sm font-medium">Preço:</h3>
@@ -211,7 +194,6 @@ const StorePage = () => {
             </div>
           </div>
           
-          {/* Products grid */}
           {filteredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {filteredProducts.map((product) => (
