@@ -44,6 +44,7 @@ const Header = () => {
     };
   }, []);
 
+  const isProjectDetailPage = location.pathname.includes('/project/');
   const isStorePage = location.pathname.includes('/loja') || 
                       location.pathname.includes('/product') || 
                       location.pathname.includes('/cart') ||
@@ -53,15 +54,17 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Conditionally show navigation items based on whether we're on a store page
-  const navigationItems = isStorePage 
-    ? [] // Empty array for store pages - remove team, projects, sponsors
-    : [
-        { name: 'Início', link: isStorePage ? '/#home' : '#home' },
-        { name: 'Equipe', link: isStorePage ? '/#team' : '#team' },
-        { name: 'Projetos', link: isStorePage ? '/#projects' : '#projects' },
-        { name: 'Patrocinadores', link: isStorePage ? '/#sponsors' : '#sponsors' }
-      ];
+  // Conditionally show navigation items based on whether we're on a store or project page
+  const navigationItems = isProjectDetailPage
+    ? [] // Empty array for project detail pages - show only store and cart
+    : isStorePage 
+      ? [] // Empty array for store pages
+      : [
+          { name: 'Início', link: isStorePage ? '/#home' : '#home' },
+          { name: 'Equipe', link: isStorePage ? '/#team' : '#team' },
+          { name: 'Projetos', link: isStorePage ? '/#projects' : '#projects' },
+          { name: 'Patrocinadores', link: isStorePage ? '/#sponsors' : '#sponsors' }
+        ];
 
   return (
     <header className={cn(
@@ -101,7 +104,7 @@ const Header = () => {
             Loja
           </Link>
           <a 
-            href={isStorePage ? "/#contact" : "#contact"}
+            href="#contact-form"
             className="px-6 py-2 bg-robotics-purple text-white rounded-md hover:bg-robotics-purple-light transition-colors"
           >
             Contato
@@ -156,7 +159,7 @@ const Header = () => {
               Loja
             </Link>
             <a 
-              href={isStorePage ? "/#contact" : "#contact"}
+              href="#contact-form"
               className="px-8 py-3 bg-robotics-purple text-white rounded-md text-xl mt-4"
               onClick={() => setMobileMenuOpen(false)}
             >

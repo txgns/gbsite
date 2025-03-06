@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Award, ChevronRight, Image as ImageIcon, Film } from 'lucide-react';
@@ -8,6 +9,7 @@ import { projects } from '@/data/projects';
 import { cn } from '@/lib/utils';
 import ProjectCarousel from '@/components/ProjectCarousel';
 import ProjectVideo from '@/components/ProjectVideo';
+import ContactForm from '@/components/ContactForm';
 
 const ProjectDetailPage = () => {
   const { id } = useParams();
@@ -140,6 +142,9 @@ const ProjectDetailPage = () => {
               </div>
             </div>
           </div>
+          
+          {/* Contact Form Section */}
+          <ContactForm />
         </div>
       </main>
       
