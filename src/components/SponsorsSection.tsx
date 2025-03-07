@@ -1,7 +1,8 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Monitor, Headphones, Cpu, Mouse, Shirt, Coffee } from 'lucide-react';
+import ContactModal from './ContactModal';
 
 type Sponsor = {
   id: number;
@@ -57,6 +58,8 @@ const sponsors: Sponsor[] = [
 ];
 
 const SponsorsSection = () => {
+  const [contactModalOpen, setContactModalOpen] = useState(false);
+
   return (
     <section id="sponsors" className="py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8 lg:px-12 bg-robotics-black">
       <div className="w-full max-w-7xl mx-auto">
@@ -102,14 +105,20 @@ const SponsorsSection = () => {
               Junte-se a essa organização maluca como parceiro e comece a fazer parte de uma comunidade incrivel!
             </p>
             <a 
-              href="#contact" 
-              className="inline-block px-5 sm:px-8 py-2 sm:py-3 bg-robotics-purple text-white text-sm sm:text-base rounded-md hover:bg-robotics-purple-light transition-colors"
+              onClick={() => setContactModalOpen(true)}
+              className="inline-block px-5 sm:px-8 py-2 sm:py-3 bg-robotics-purple text-white text-sm sm:text-base rounded-md hover:bg-robotics-purple-light transition-colors cursor-pointer"
             >
               Junte-se a nós!
             </a>
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal
+        open={contactModalOpen}
+        onOpenChange={setContactModalOpen}
+      />
     </section>
   );
 };
