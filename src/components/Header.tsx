@@ -12,6 +12,13 @@ const Header = () => {
   const [cartCount, setCartCount] = useState(0);
   const [storeContactModalOpen, setStoreContactModalOpen] = useState(false);
 
+  // Determine page types once on component mount or when location changes
+  const isProjectDetailPage = location.pathname.includes('/project/');
+  const isStorePage = location.pathname.includes('/loja') || 
+                    location.pathname.includes('/product') || 
+                    location.pathname.includes('/cart') ||
+                    location.pathname.includes('/checkout');
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -21,20 +28,27 @@ const Header = () => {
       }
     };
 
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-      const cartItems = JSON.parse(storedCart);
-      setCartCount(cartItems.length);
-    }
-
-    const handleCartUpdate = () => {
+    // Only read cart from localStorage once on mount
+    const updateCartCount = () => {
       const storedCart = localStorage.getItem('cart');
       if (storedCart) {
-        const cartItems = JSON.parse(storedCart);
-        setCartCount(cartItems.length);
+        try {
+          const cartItems = JSON.parse(storedCart);
+          setCartCount(cartItems.length);
+        } catch (e) {
+          console.error("Error parsing cart data:", e);
+          setCartCount(0);
+        }
       } else {
         setCartCount(0);
       }
+    };
+
+    // Initial cart update
+    updateCartCount();
+
+    const handleCartUpdate = () => {
+      updateCartCount();
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -44,13 +58,7 @@ const Header = () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('cartUpdated', handleCartUpdate);
     };
-  }, []);
-
-  const isProjectDetailPage = location.pathname.includes('/project/');
-  const isStorePage = location.pathname.includes('/loja') || 
-                      location.pathname.includes('/product') || 
-                      location.pathname.includes('/cart') ||
-                      location.pathname.includes('/checkout');
+  }, []);  // Empty dependency array to run only once on mount
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
