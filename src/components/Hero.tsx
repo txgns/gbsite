@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { ChevronDown, Cpu, Cog, Wrench, Bot } from 'lucide-react';
@@ -34,10 +33,11 @@ const Hero = () => {
     };
     
     calculateTimeRemaining();
+    
     const interval = setInterval(calculateTimeRemaining, 1000);
     
     return () => clearInterval(interval);
-  }, [competitionDate]);
+  }, []);
 
   const scrollToTeam = () => {
     const teamSection = document.getElementById('team');
