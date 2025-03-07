@@ -1,6 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { ChevronDown, Cpu, Cog, Wrench, Bot } from 'lucide-react';
+import { ChevronDown, Bot, Users } from 'lucide-react';
+import { Button } from './ui/button';
+import ContactModal from './ContactModal';
 
 const Hero = () => {
   // Define a specific date for the competition (May 1, 2025)
@@ -12,6 +15,8 @@ const Hero = () => {
     minutes: 0,
     seconds: 0
   });
+
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   useEffect(() => {
     const calculateTimeRemaining = () => {
@@ -115,10 +120,17 @@ const Hero = () => {
           ))}
         </div>
         
-        
         <p className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl lg:text-2xl font-bold stagger-animation">
           Até a próxima competição de robótica
         </p>
+
+        <Button 
+          onClick={() => setContactModalOpen(true)}
+          className="mt-8 sm:mt-12 bg-robotics-purple hover:bg-robotics-purple-light text-white px-8 py-3 rounded-md flex items-center gap-2"
+        >
+          <Users size={20} />
+          Junte-se a nós!
+        </Button>
 
         <button 
           onClick={scrollToTeam}
@@ -128,6 +140,12 @@ const Hero = () => {
           <ChevronDown size={24} className="sm:w-8 sm:h-8 text-white/70" />
         </button>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal
+        open={contactModalOpen}
+        onOpenChange={setContactModalOpen}
+      />
     </section>
   );
 };

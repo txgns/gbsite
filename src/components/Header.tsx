@@ -64,16 +64,6 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isStorePage) {
-      e.preventDefault();
-      setStoreContactModalOpen(true);
-      if (mobileMenuOpen) {
-        setMobileMenuOpen(false);
-      }
-    }
-  };
-
   // Conditionally show navigation items based on whether we're on a store or project page
   const navigationItems = isProjectDetailPage
     ? [] // Empty array for project detail pages - show only store and cart
@@ -124,13 +114,6 @@ const Header = () => {
             >
               Loja
             </Link>
-            <a 
-              href={isStorePage ? "#" : "#contact-form"}
-              onClick={handleContactClick}
-              className="px-6 py-2 bg-robotics-purple text-white rounded-md hover:bg-robotics-purple-light transition-colors"
-            >
-              Contato
-            </a>
             <Link to="/cart" className="relative">
               <ShoppingCart className="text-white hover:text-robotics-purple-light transition-colors" />
               {cartCount > 0 && (
@@ -180,21 +163,6 @@ const Header = () => {
               >
                 Loja
               </Link>
-              <a 
-                href={isStorePage ? "#" : "#contact-form"}
-                className="px-8 py-3 bg-robotics-purple text-white rounded-md text-xl mt-4"
-                onClick={(e) => {
-                  if (isStorePage) {
-                    e.preventDefault();
-                    setStoreContactModalOpen(true);
-                    setMobileMenuOpen(false);
-                  } else {
-                    setMobileMenuOpen(false);
-                  }
-                }}
-              >
-                Contato
-              </a>
             </div>
           </div>
         )}
