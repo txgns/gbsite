@@ -124,14 +124,6 @@ const Hero = () => {
           Até a próxima competição de robótica
         </p>
 
-        <Button 
-          onClick={() => setContactModalOpen(true)}
-          className="mt-8 sm:mt-12 bg-robotics-purple hover:bg-robotics-purple-light text-white px-8 py-3 rounded-md flex items-center gap-2"
-        >
-          <Users size={20} />
-          Junte-se a nós!
-        </Button>
-
         <button 
           onClick={scrollToTeam}
           className="mt-8 sm:mt-12 animate-pulse-subtle"
