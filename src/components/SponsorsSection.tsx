@@ -32,28 +32,7 @@ const sponsors: Sponsor[] = [
     description: 'High-performance processors designed for maximum gaming efficiency',
     category: 'Hardware',
     icon: <Cpu size={32} />,
-  },
-  {
-    id: 4,
-    name: 'PrecisionGear',
-    description: 'Gaming peripherals engineered for competitive play',
-    category: 'Accessories',
-    icon: <Mouse size={32} />,
-  },
-  {
-    id: 5,
-    name: 'EliteWear',
-    description: 'Premium gaming apparel designed for comfort during long sessions',
-    category: 'Apparel',
-    icon: <Shirt size={32} />,
-  },
-  {
-    id: 6,
-    name: 'FuelUp',
-    description: 'Energy drinks formulated to enhance focus and reaction time',
-    category: 'Nutrition',
-    icon: <Coffee size={32} />,
-  },
+  }
 ];
 
 const SponsorsSection = () => {
