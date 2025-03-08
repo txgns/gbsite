@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter, ShoppingCart, Search, ArrowLeft } from 'lucide-react';
@@ -7,6 +8,9 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { useCart, Product } from '@/context/CartContext';
 import { useToast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
 import products from '@/data/products';
 
 const categories = ['Todos', ...Array.from(new Set(products.map(p => p.category)))];
@@ -20,6 +24,8 @@ const StorePage = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 200]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [minPrice, setMinPrice] = useState('0');
+  const [maxPrice, setMaxPrice] = useState('200');
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -52,6 +58,28 @@ const StorePage = () => {
     
     setFilteredProducts(result);
   }, [selectedCategory, searchQuery, priceRange]);
+
+  const handleSliderChange = (value: number[]) => {
+    const min = value[0];
+    const max = value[0] === value[1] ? value[0] + 1 : value[1];
+    setPriceRange([min, max]);
+    setMinPrice(min.toString());
+    setMaxPrice(max.toString());
+  };
+
+  const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value) || 0;
+    const newMin = Math.min(value, priceRange[1] - 1);
+    setPriceRange([newMin, priceRange[1]]);
+    setMinPrice(newMin.toString());
+  };
+
+  const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value) || 0;
+    const newMax = Math.max(value, priceRange[0] + 1);
+    setPriceRange([priceRange[0], newMax]);
+    setMaxPrice(newMax.toString());
+  };
 
   const handleAddToCart = (product: Product) => {
     addToCart(product);
@@ -154,40 +182,96 @@ const StorePage = () => {
                 </div>
                 
                 <h3 className="text-white font-medium mb-2">Preço</h3>
-                <div className="px-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max="200"
-                    step="10"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                    className="w-full accent-robotics-purple"
-                  />
-                  <div className="flex justify-between text-white/70 text-sm mt-1">
-                    <span>R$ {priceRange[0]}</span>
-                    <span>R$ {priceRange[1]}</span>
+                <div className="px-2 space-y-4">
+                  <div className="pt-2">
+                    <Slider 
+                      defaultValue={[0, 200]} 
+                      value={[priceRange[0], priceRange[1]]} 
+                      max={200} 
+                      step={1} 
+                      minStepsBetweenThumbs={1}
+                      onValueChange={handleSliderChange}
+                      className="accent-robotics-purple mb-4"
+                    />
+                  </div>
+
+                  <div className="flex items-center space-x-4">
+                    <div className="w-1/2 space-y-2">
+                      <Label htmlFor="min-price" className="text-white text-xs">Min</Label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 text-xs">R$</span>
+                        <Input
+                          id="min-price"
+                          type="number"
+                          value={minPrice}
+                          onChange={handleMinPriceChange}
+                          className="pl-8 py-1 h-8 bg-robotics-black-lighter border-white/10 text-white focus-visible:ring-robotics-purple"
+                        />
+                      </div>
+                    </div>
+                    <div className="w-1/2 space-y-2">
+                      <Label htmlFor="max-price" className="text-white text-xs">Max</Label>
+                      <div className="relative">
+                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 text-xs">R$</span>
+                        <Input
+                          id="max-price"
+                          type="number"
+                          value={maxPrice}
+                          onChange={handleMaxPriceChange}
+                          className="pl-8 py-1 h-8 bg-robotics-black-lighter border-white/10 text-white focus-visible:ring-robotics-purple"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             )}
             
             <div className="hidden md:block mt-4">
-              <div className="flex items-center gap-4">
-                <h3 className="text-white text-sm font-medium">Preço:</h3>
-                <div className="flex-grow px-2">
-                  <input
-                    type="range"
-                    min="0"
-                    max="200"
-                    step="10"
-                    value={priceRange[1]}
-                    onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
-                    className="w-full accent-robotics-purple"
-                  />
-                  <div className="flex justify-between text-white/70 text-xs mt-1">
-                    <span>R$ {priceRange[0]}</span>
-                    <span>R$ {priceRange[1]}</span>
+              <div className="flex items-end gap-4">
+                <div className="w-56">
+                  <h3 className="text-white text-sm font-medium mb-3">Preço:</h3>
+                  <div className="space-y-4">
+                    <div className="px-2 pt-2">
+                      <Slider 
+                        defaultValue={[0, 200]} 
+                        value={[priceRange[0], priceRange[1]]}
+                        max={200} 
+                        step={1} 
+                        minStepsBetweenThumbs={1}
+                        onValueChange={handleSliderChange}
+                        className="accent-robotics-purple"
+                      />
+                    </div>
+                    
+                    <div className="flex items-center space-x-4">
+                      <div className="w-1/2 space-y-1">
+                        <Label htmlFor="desktop-min-price" className="text-white text-xs">Min</Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 text-xs">R$</span>
+                          <Input
+                            id="desktop-min-price"
+                            type="number"
+                            value={minPrice}
+                            onChange={handleMinPriceChange}
+                            className="pl-8 py-1 h-8 bg-robotics-black-lighter border-white/10 text-white focus-visible:ring-robotics-purple"
+                          />
+                        </div>
+                      </div>
+                      <div className="w-1/2 space-y-1">
+                        <Label htmlFor="desktop-max-price" className="text-white text-xs">Max</Label>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 text-xs">R$</span>
+                          <Input
+                            id="desktop-max-price"
+                            type="number"
+                            value={maxPrice}
+                            onChange={handleMaxPriceChange}
+                            className="pl-8 py-1 h-8 bg-robotics-black-lighter border-white/10 text-white focus-visible:ring-robotics-purple"
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,6 +325,8 @@ const StorePage = () => {
                   setSelectedCategory('Todos');
                   setSearchQuery('');
                   setPriceRange([0, 200]);
+                  setMinPrice('0');
+                  setMaxPrice('200');
                 }}
                 className="text-robotics-purple hover:text-robotics-purple-light"
               >
