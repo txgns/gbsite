@@ -1,9 +1,12 @@
 
-import React from 'react';
-import { Twitter, Instagram, Twitch, Youtube, Mail, MapPin, Phone } from 'lucide-react';
+import React, { useState } from 'react';
+import { Twitter, Instagram, Twitch, Youtube, Mail, MapPin, Phone, FileText } from 'lucide-react';
+import PolicyModal from './PolicyModal';
+import { privacyPolicyContent, termsOfServiceContent, cookiePolicyContent } from '@/data/policies';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [openModal, setOpenModal] = useState<'privacy' | 'terms' | 'cookies' | null>(null);
 
   return (
     <footer id="contact" className="bg-esports-black-light px-6 md:px-12 pt-16 pb-8">
@@ -58,18 +61,43 @@ const Footer = () => {
             © {currentYear} GAMBIARRA ROBOTICS. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6">
-            {['Política de Privacidade', 'Termos de Serviço', 'Política de Cookies'].map((item, i) => (
-              <a 
+            {[
+              { title: 'Política de Privacidade', modalType: 'privacy' as const },
+              { title: 'Termos de Serviço', modalType: 'terms' as const },
+              { title: 'Política de Cookies', modalType: 'cookies' as const }
+            ].map((item, i) => (
+              <button 
                 key={i}
-                href="#"
-                className="text-white/50 hover:text-white text-sm transition-colors"
+                onClick={() => setOpenModal(item.modalType)}
+                className="text-white/50 hover:text-white text-sm transition-colors flex items-center gap-1"
               >
-                {item}
-              </a>
+                <FileText size={14} />
+                {item.title}
+              </button>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Policy Modals */}
+      <PolicyModal
+        open={openModal === 'privacy'}
+        onOpenChange={(open) => !open && setOpenModal(null)}
+        title="Política de Privacidade"
+        content={privacyPolicyContent}
+      />
+      <PolicyModal
+        open={openModal === 'terms'}
+        onOpenChange={(open) => !open && setOpenModal(null)}
+        title="Termos de Serviço"
+        content={termsOfServiceContent}
+      />
+      <PolicyModal
+        open={openModal === 'cookies'}
+        onOpenChange={(open) => !open && setOpenModal(null)}
+        title="Política de Cookies"
+        content={cookiePolicyContent}
+      />
     </footer>
   );
 };
