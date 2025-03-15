@@ -26,49 +26,52 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
     initMercadoPago(MERCADO_PAGO_PUBLIC_KEY);
     
     // Em uma aplicação real, você faria uma chamada para o seu backend para obter o preferenceId
-    // Aqui estamos simulando a criação de um preferenceId
-    const simulatePreferenceId = () => {
-      // Em produção: essa parte seria feita pelo seu servidor
-      // Este é apenas um ID fictício para demonstração
-      return "TEST-" + Math.random().toString(36).substring(2, 15);
+    // Este é apenas um exemplo simplificado - em produção isso viria do seu backend
+    const fetchPreferenceId = async () => {
+      try {
+        // Normalmente, você faria uma chamada para seu backend como:
+        // const response = await fetch('/api/create-preference', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify({ amount })
+        // });
+        // const data = await response.json();
+        // setPreferenceId(data.preferenceId);
+        
+        // Para este exemplo, continuaremos usando um ID simulado
+        // Em produção, substitua esta parte pela chamada real ao seu backend
+        setPreferenceId("TEST-" + Math.random().toString(36).substring(2, 15));
+      } catch (error) {
+        console.error("Erro ao obter preferenceId:", error);
+        toast({
+          title: "Erro",
+          description: "Não foi possível inicializar o checkout",
+          variant: "destructive",
+        });
+      }
     };
     
-    setPreferenceId(simulatePreferenceId());
-  }, []);
+    fetchPreferenceId();
+  }, [amount, toast]);
 
   const handleCheckout = () => {
+    if (!preferenceId) {
+      toast({
+        title: "Erro",
+        description: "Não foi possível iniciar o pagamento",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
-    // Em uma implementação real, aqui seria o redirecionamento para o Mercado Pago
-    // Como estamos em demonstração, vamos simular o redirecionamento
+    // Redirecionamento real para o Mercado Pago
+    window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`;
     
-    // Normalmente, você usaria algo como:
-    // window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`;
-    
-    // Para fins de demonstração, vamos abrir uma nova janela simulando o Mercado Pago
-    const checkoutWindow = window.open(
-      `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`,
-      "_blank"
-    );
-    
-    // Simula o retorno do checkout após 3 segundos
-    setTimeout(() => {
-      if (checkoutWindow) {
-        checkoutWindow.close();
-      }
-      
-      toast({
-        title: "Pagamento processado",
-        description: "Seu pagamento foi processado com sucesso!",
-      });
-      
-      setIsLoading(false);
-      onPaymentSuccess();
-    }, 3000);
-    
-    // Em um ambiente real, você teria um endpoint de callback/webhook que o Mercado Pago 
-    // chamaria para notificar sobre o status do pagamento, e então você atualizaria o estado
-    // da sua aplicação com base nessa resposta
+    // Note: Em uma implementação real, você também precisaria configurar
+    // um webhook/callback URL no seu backend para receber atualizações sobre o 
+    // status do pagamento e então atualizar o estado do pedido no seu sistema
   };
 
   return (
@@ -100,10 +103,6 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
               "Pagar com Mercado Pago"
             )}
           </Button>
-          
-          <div className="mt-4 text-xs text-center text-muted-foreground">
-            <p>Esta é uma simulação. Em produção, você seria redirecionado para o checkout real do Mercado Pago.</p>
-          </div>
         </>
       ) : (
         <div className="flex justify-center items-center py-6">
