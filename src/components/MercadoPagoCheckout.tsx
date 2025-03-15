@@ -6,7 +6,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
 
 // Chave pública do Mercado Pago - em produção, isso deve vir de variáveis de ambiente
-const MERCADO_PAGO_PUBLIC_KEY = "TEST-087bfa63-2530-4aca-99b6-74ce8c9ee515";
+const MERCADO_PAGO_PUBLIC_KEY = "APP_USR-5072e427-80b2-4841-81e1-d328a0ef5213";
 
 interface MercadoPagoCheckoutProps {
   amount: number;
