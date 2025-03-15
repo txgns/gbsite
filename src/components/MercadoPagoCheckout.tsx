@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react";
-import { initMercadoPago, Checkout } from "@mercadopago/sdk-react";
+import { initMercadoPago } from "@mercadopago/sdk-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
@@ -79,19 +79,8 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
             )}
           </Button>
           
-          {/* Este é o componente que faria o redirecionamento em produção */}
-          {/* <Checkout
-            preference={preferenceId}
-            onError={(error) => {
-              console.error("Mercado Pago error:", error);
-              toast({
-                title: "Erro no pagamento",
-                description: "Houve um problema ao processar seu pagamento.",
-                variant: "destructive",
-              });
-            }}
-            onReady={() => console.log("Checkout pronto")}
-          /> */}
+          {/* Nota: Em produção, você usaria os componentes oficiais do Mercado Pago
+              como o Wallet Brick ou o Payment Brick, que estão disponíveis no SDK */}
         </>
       ) : (
         <div className="flex justify-center items-center py-6">
