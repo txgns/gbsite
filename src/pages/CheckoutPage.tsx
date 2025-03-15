@@ -8,20 +8,19 @@ import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/components/ui/use-toast";
 import { useCart } from "@/context/CartContext";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import MercadoPagoCheckout from "@/components/MercadoPagoCheckout";
 
 const CheckoutPage = () => {
   const { cart, totalPrice, clearCart } = useCart();
   const { toast } = useToast();
   const navigate = useNavigate();
+  const [step, setStep] = useState<"details" | "payment">("details");
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     address: "",
     city: "",
     postalCode: "",
-    cardNumber: "",
-    cardExpiry: "",
-    cardCvc: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,7 +28,7 @@ const CheckoutPage = () => {
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleDetailsSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Simple validation
@@ -42,7 +41,12 @@ const CheckoutPage = () => {
       return;
     }
 
-    // Process order
+    // Avança para o passo de pagamento
+    setStep("payment");
+  };
+
+  const handlePaymentSuccess = () => {
+    // Processa o pedido após o pagamento bem-sucedido
     toast({
       title: "Pedido realizado com sucesso!",
       description: `Total: R$ ${totalPrice.toFixed(2)}`,
@@ -82,110 +86,93 @@ const CheckoutPage = () => {
         <div className="md:col-span-2">
           <Card>
             <CardHeader>
-              <CardTitle>Dados para entrega</CardTitle>
+              <CardTitle>{step === "details" ? "Dados para entrega" : "Pagamento"}</CardTitle>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {step === "details" ? (
+                <form onSubmit={handleDetailsSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Nome completo</Label>
+                      <Input 
+                        id="name" 
+                        name="name" 
+                        value={formState.name} 
+                        onChange={handleInputChange} 
+                        required 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input 
+                        id="email" 
+                        name="email" 
+                        type="email" 
+                        value={formState.email} 
+                        onChange={handleInputChange} 
+                        required 
+                      />
+                    </div>
+                  </div>
+                  
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nome completo</Label>
+                    <Label htmlFor="address">Endereço</Label>
                     <Input 
-                      id="name" 
-                      name="name" 
-                      value={formState.name} 
+                      id="address" 
+                      name="address" 
+                      value={formState.address} 
                       onChange={handleInputChange} 
                       required 
                     />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input 
-                      id="email" 
-                      name="email" 
-                      type="email" 
-                      value={formState.email} 
-                      onChange={handleInputChange} 
-                      required 
-                    />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="city">Cidade</Label>
+                      <Input 
+                        id="city" 
+                        name="city" 
+                        value={formState.city} 
+                        onChange={handleInputChange} 
+                        required 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="postalCode">CEP</Label>
+                      <Input 
+                        id="postalCode" 
+                        name="postalCode" 
+                        value={formState.postalCode} 
+                        onChange={handleInputChange} 
+                        required 
+                      />
+                    </div>
                   </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="address">Endereço</Label>
-                  <Input 
-                    id="address" 
-                    name="address" 
-                    value={formState.address} 
-                    onChange={handleInputChange} 
-                    required 
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="city">Cidade</Label>
-                    <Input 
-                      id="city" 
-                      name="city" 
-                      value={formState.city} 
-                      onChange={handleInputChange} 
-                      required 
-                    />
+                  
+                  <div className="pt-4">
+                    <Button type="submit" className="w-full">
+                      Continuar para pagamento
+                    </Button>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="postalCode">CEP</Label>
-                    <Input 
-                      id="postalCode" 
-                      name="postalCode" 
-                      value={formState.postalCode} 
-                      onChange={handleInputChange} 
-                      required 
-                    />
-                  </div>
-                </div>
-                
-                <Separator className="my-4" />
-                
-                <CardTitle className="mb-4">Dados de pagamento</CardTitle>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="cardNumber">Número do cartão</Label>
-                  <Input 
-                    id="cardNumber" 
-                    name="cardNumber" 
-                    value={formState.cardNumber} 
-                    onChange={handleInputChange} 
-                    required 
-                    placeholder="1234 5678 9012 3456"
-                  />
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="cardExpiry">Data de validade</Label>
-                    <Input 
-                      id="cardExpiry" 
-                      name="cardExpiry" 
-                      value={formState.cardExpiry} 
-                      onChange={handleInputChange} 
-                      required 
-                      placeholder="MM/AA"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="cardCvc">CVC</Label>
-                    <Input 
-                      id="cardCvc" 
-                      name="cardCvc" 
-                      value={formState.cardCvc} 
-                      onChange={handleInputChange} 
-                      required 
-                      placeholder="123"
-                    />
-                  </div>
-                </div>
-              </form>
+                </form>
+              ) : (
+                <MercadoPagoCheckout 
+                  amount={totalPrice}
+                  onPaymentSuccess={handlePaymentSuccess}
+                />
+              )}
             </CardContent>
+            {step === "payment" && (
+              <CardFooter>
+                <Button 
+                  variant="outline" 
+                  onClick={() => setStep("details")}
+                  className="w-full"
+                >
+                  Voltar para dados de entrega
+                </Button>
+              </CardFooter>
+            )}
           </Card>
         </div>
         
@@ -213,11 +200,6 @@ const CheckoutPage = () => {
                 </div>
               </div>
             </CardContent>
-            <CardFooter>
-              <Button onClick={handleSubmit} className="w-full">
-                Finalizar compra
-              </Button>
-            </CardFooter>
           </Card>
         </div>
       </div>
