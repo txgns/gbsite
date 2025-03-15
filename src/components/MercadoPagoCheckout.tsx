@@ -38,15 +38,37 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
 
   const handleCheckout = () => {
     setIsLoading(true);
-    // Como estamos em modo de demonstração, vamos simular o sucesso
+    
+    // Em uma implementação real, aqui seria o redirecionamento para o Mercado Pago
+    // Como estamos em demonstração, vamos simular o redirecionamento
+    
+    // Normalmente, você usaria algo como:
+    // window.location.href = `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`;
+    
+    // Para fins de demonstração, vamos abrir uma nova janela simulando o Mercado Pago
+    const checkoutWindow = window.open(
+      `https://www.mercadopago.com.br/checkout/v1/redirect?preference-id=${preferenceId}`,
+      "_blank"
+    );
+    
+    // Simula o retorno do checkout após 3 segundos
     setTimeout(() => {
+      if (checkoutWindow) {
+        checkoutWindow.close();
+      }
+      
       toast({
         title: "Pagamento processado",
         description: "Seu pagamento foi processado com sucesso!",
       });
+      
       setIsLoading(false);
       onPaymentSuccess();
-    }, 2000);
+    }, 3000);
+    
+    // Em um ambiente real, você teria um endpoint de callback/webhook que o Mercado Pago 
+    // chamaria para notificar sobre o status do pagamento, e então você atualizaria o estado
+    // da sua aplicação com base nessa resposta
   };
 
   return (
@@ -60,27 +82,28 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
               <strong>Valor:</strong> R$ {amount.toFixed(2)}
             </p>
             <p className="text-sm text-muted-foreground">
-              Em um ambiente de produção, você seria redirecionado para o checkout do Mercado Pago.
+              Ao clicar em "Pagar com Mercado Pago", você será redirecionado para a plataforma segura de pagamento.
             </p>
           </div>
           
           <Button 
             onClick={handleCheckout} 
-            className="w-full"
+            className="w-full bg-[#009ee3] hover:bg-[#007eb5]"
             disabled={isLoading}
           >
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Processando
+                Redirecionando...
               </>
             ) : (
-              "Finalizar pagamento"
+              "Pagar com Mercado Pago"
             )}
           </Button>
           
-          {/* Nota: Em produção, você usaria os componentes oficiais do Mercado Pago
-              como o Wallet Brick ou o Payment Brick, que estão disponíveis no SDK */}
+          <div className="mt-4 text-xs text-center text-muted-foreground">
+            <p>Esta é uma simulação. Em produção, você seria redirecionado para o checkout real do Mercado Pago.</p>
+          </div>
         </>
       ) : (
         <div className="flex justify-center items-center py-6">
