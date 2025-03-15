@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
 // Chave pública do Mercado Pago - em produção, isso deve vir de variáveis de ambiente
-const MERCADO_PAGO_PUBLIC_KEY = "TEST-31e2e90c-f6cb-46f3-b23e-4af799807da8";
+const MERCADO_PAGO_PUBLIC_KEY = "TEST-087bfa63-2530-4aca-99b6-74ce8c9ee515";
 
 interface MercadoPagoCheckoutProps {
   amount: number;
