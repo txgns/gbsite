@@ -51,7 +51,7 @@ export const projects: Project[] = [
     category: 'Hockey',
     date: 'Projeto em Andamento',
     image: '',
-    description: 'Time de Hockey Micro brabo',
+    description: 'Time de Hockey Micro ',
     achievements: [
       'Na Busca'
   
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     category: 'Sumô Mini',
     date: 'Projeto em Andamento',
     image: '',
-    description: 'Mini Sumo de 500g brabo',
+    description: 'Mini Sumo de 500g',
     achievements: [
       'Na Busca'
     ],
@@ -78,7 +78,7 @@ export const projects: Project[] = [
     category: 'Sumô Lego',
     date: 'Projeto em Andamento',
     image: '',
-    description: 'Sumo lego Pro de 1kg brabo',
+    description: 'Sumo lego Pro de 1kg',
     achievements: [
       'Na Busca'
     ],
