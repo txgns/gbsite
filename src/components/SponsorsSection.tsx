@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Monitor, Headphones, Cpu, Mouse, Shirt, Coffee } from 'lucide-react';
+import { Monitor, Headphones, Cpu, Mouse, Shirt, Coffee, Beer, Truck } from 'lucide-react';
 import ContactModal from './ContactModal';
 
 type Sponsor = {
@@ -15,22 +15,22 @@ type Sponsor = {
 const sponsors: Sponsor[] = [
   {
     id: 1,
-    name: 'TechPulse',
-    description: 'Premium gaming monitors with ultra-fast refresh rates',
-    category: 'Hardware',
-    icon: <Monitor size={32} />,
+    name: 'MelkenBier',
+    description: 'Cervejaria braba',
+    category: 'Cervejaria',
+    icon: <Beer size={32} />,
   },
   {
     id: 2,
-    name: 'SonicWave',
-    description: 'Professional-grade audio equipment for crystal clear communication',
-    category: 'Audio',
-    icon: <Headphones size={32} />,
+    name: 'ThunderScap',
+    description: 'Os Brabos também',
+    category: 'Auto',
+    icon: <Truck size={32} />,
   },
   {
     id: 3,
-    name: 'CoreTech',
-    description: 'High-performance processors designed for maximum gaming efficiency',
+    name: 'Ryu',
+    description: 'Outro Brabo da impressão 3D',
     category: 'Hardware',
     icon: <Cpu size={32} />,
   }
