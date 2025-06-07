@@ -30,17 +30,17 @@ const MercadoPagoCheckout: React.FC<MercadoPagoCheckoutProps> = ({
     const fetchPreferenceId = async () => {
       try {
         // Normalmente, você faria uma chamada para seu backend como:
-        // const response = await fetch('/api/create-preference', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ amount })
-        // });
-        // const data = await response.json();
-        // setPreferenceId(data.preferenceId);
+         const response = await fetch('/api/create-preference', {
+           method: 'POST',
+           headers: { 'Content-Type': 'application/json' },
+           body: JSON.stringify({ amount })
+         });
+          const data = await response.json();
+          setPreferenceId("APP_USR-5072e427-80b2-4841-81e1-d328a0ef5213");
         
         // Para este exemplo, continuaremos usando um ID simulado
         // Em produção, substitua esta parte pela chamada real ao seu backend
-        setPreferenceId("TEST-" + Math.random().toString(36).substring(2, 15));
+        // setPreferenceId("APP_USR-5072e427-80b2-4841-81e1-d328a0ef5213");
       } catch (error) {
         console.error("Erro ao obter preferenceId:", error);
         toast({
