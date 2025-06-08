@@ -31,7 +31,7 @@ const sponsors: Sponsor[] = [
     id: 3,
     name: 'Ryu',
     description: 'Outro Brabo da impressão 3D',
-    category: 'Hardware',
+    category: 'Impressão 3D',
     icon: <Cpu size={32} />,
   }
 ];
